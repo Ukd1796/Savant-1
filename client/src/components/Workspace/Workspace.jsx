@@ -164,7 +164,7 @@ const Workspace = () => {
             </div>
             <div className="col-12 col-md-10 col-lg-9 col-xl-11">
               <div className="row d-flex">
-                <div className="d-flex justify-content-between Workspace_Navtab mt-3">
+                <div className="d-flex justify-content-between Workspace_Navtab mt-4">
                   <div
                     onClick={() => setActiveTab("drafts")}
                     className={activeTab === "drafts" ? "active" : ""}
@@ -183,12 +183,12 @@ const Workspace = () => {
                   >
                     Upload Papers
                   </div>
-                  <div
+                  {/* <div
                     onClick={() => setActiveTab("collaborators")}
                     className={activeTab === "collaborators" ? "active" : ""}
                   >
                     Collaborators
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="row justify-content-between mt-3">

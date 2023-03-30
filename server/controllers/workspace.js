@@ -4,6 +4,7 @@ const Workspace = require('../models/workspace');
 const classCode = require('../models/classCode');
 const User = require('../models/user');
 const Draft = require('../models/draft');
+const Editor = require("../models/editor")
 
 exports.createWorkspace = async (req, res, next) => {
     let currClassCode;
@@ -209,7 +210,44 @@ exports.getDraft = (req, res, next) => {
         .catch(err => {
             next(err);
         })
+
+const io = require("socket.io")(5000, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+  },
+})
+console.log("being-tested!")
+
+const defaultValue = ""
+
+io.on("connection", socket => {
+  socket.on("get-document", async draftId => {
+    const draft = await findOrCreateDocument(draftId)
+    socket.join(draftId)
+    socket.emit("load-document", draft.data)
+
+    socket.on("send-changes", delta => {
+      socket.broadcast.to(draftId).emit("receive-changes", delta)
+    })
+
+    socket.on("save-document", async data => {
+      await Editor.findByIdAndUpdate(draftId, { data })
+    })
+  })
+})
+
+async function findOrCreateDocument(id) {
+  if (id == null) return
+
+  const draft = await Draft.findById(id)
+  if (draft) return draft
+  return await Editor.create({ _id: id, data: defaultValue })
 }
+
+}
+
+
 
 exports.getReminders = (req, res, next) => {
     const userEmail = req.body.userEmail;
