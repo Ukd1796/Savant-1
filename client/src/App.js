@@ -5,8 +5,6 @@ import Home from './components/Home/Home';
 import Dashboard from './components/Workspace/Dashboard/Dashboard';
 import Workspace from './components/Workspace/Workspace';
 import ScrollToTop from './components/partials/ScrollToTop/ScrollToTop';
-import AssignmentAdmin from './components/Workspace/AssignmentAdmin/AssignmentAdmin';
-import StudentSubmission from './components/Workspace/StudentSubmission/StudentSubmission';
 import { useDispatch, useSelector } from 'react-redux';
 import { AUTOLOGIN, selectUserData } from './reduxSlices/authSlice';
 import Reminders from './components/partials/Header/MobileReminder'
@@ -31,23 +29,11 @@ const App = () => {
               </div>
             ) : userData.token ? (
               <Switch>
-                {/* <Route path='/' component={Home} exact/>
-                <Route path='/classes' component={Dashboards} exact/>
-                <Route path='/classes/reminders' component={Reminders}/>
-                <Route path='/classes/:id' component={Classroom} exact/>
-                <Route path='/classes/:id/:tab' component={Classroom} exact/>
-                <Route path='/classes/:id/assignment/:assignId/admin' component={AssignmentAdmin} exact/>
-                <Route path='/classes/:id/assignment/:assignId' component={StudentSubmission} exact/> */}
-
-
-
                 <Route path='/' component={Home} exact/>
                 <Route path='/workspace' component={Dashboard} exact/>
                 <Route path='/workspace/reminders' component={Reminders}/>
                 <Route path='/workspace/:id' component={Workspace} exact/>
                 <Route path='/workspace/:id/:tab' component={Workspace} exact/>
-                <Route path='/workspace/:id/draft/:draftId/admin' component={AssignmentAdmin} exact/>
-                <Route path='/workspace/:id/draft/:draftId' component={StudentSubmission} exact/>
                 <Redirect to ="/" />
               </Switch> 
             ) : (

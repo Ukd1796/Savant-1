@@ -51,7 +51,7 @@ const Drafts = ({ classCode, adminEmail, isDraftCreated, setIsDraftCreated }) =>
     return (
         <div className="Assignments content-box py-3 px-4 pt-4">
             <div className="d-flex justify-content-center">
-                <Button outline color="primary" className="Button_Hover d-flex align-items-center py-2 px-3 fs-6" onClick={() => setShow(true)}>
+                <Button outline color="primary" className="Button_Hover d-flex align-items-center py-2 px-3 fs-6" onClick={() => setShowCreate(true)}>
                     <AddRoundedIcon style={{ fontSize: "28px", margin: "-2px 3px 0 0" }} />
                     Create Draft
                 </Button>
@@ -73,23 +73,12 @@ const Drafts = ({ classCode, adminEmail, isDraftCreated, setIsDraftCreated }) =>
                                             "/workspace/" + classCode + "/drafts/" + draft._id
                                         } >
 
-                                            {/* <div className="d-flex justify-content-between">
-                                            <div className="Assignment_Date">
-                                                {getDateStringFromTimestamp(draft.dueDate)}
-                                            </div>
-                                            <div className="Assignment_Time">
-                                                {getTimeFromTimestamp(draft.dueDate)}
-                                            </div>
-                                        </div> */}
                                             <div className="Assignment_Box d-flex flex-column justify-content-center p-1">
                                                 <div className="Assignment_Img">
                                                     <img src="https://firebasestorage.googleapis.com/v0/b/edeasy-90583.appspot.com/o/assignments%2FWhatsApp%20Image%202021-10-17%20at%204.55.04%20AM.jpeg?alt=media&token=db78b70d-2b09-4cbb-b5ac-d47e2392bd31" alt="" />
                                                     <div className="Assignment_Name">
                                                         {draft.name}
                                                     </div>
-                                                </div>
-                                                <div className="Assignment_Desc">
-                                                    {draft.desc}
                                                 </div>
                                             </div>
                                         </a>
@@ -104,10 +93,7 @@ const Drafts = ({ classCode, adminEmail, isDraftCreated, setIsDraftCreated }) =>
 
                 </div>
 
-            }
-
-            {
-                (storeData.userEmail === adminEmail) ? (
+            }                 
                     <div className="floating-btn d-block d-md-none">
                         <Dropdown direction="up" isOpen={dropdownOpen} toggle={toggle}>
                             <DropdownToggle nav>
@@ -122,8 +108,6 @@ const Drafts = ({ classCode, adminEmail, isDraftCreated, setIsDraftCreated }) =>
                             </DropdownMenu>
                         </Dropdown>
                     </div>
-                ) : ("")
-            }
             <CreateDraft
                 setIsDraftCreated={setIsDraftCreated}
                 isModalOpen={showCreate}

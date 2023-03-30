@@ -4,7 +4,6 @@ const Workspace = require('../models/workspace');
 const classCode = require('../models/classCode');
 const User = require('../models/user');
 const Draft = require('../models/draft');
-const Submission = require('../models/submission');
 
 exports.createWorkspace = async (req, res, next) => {
     let currClassCode;
@@ -22,10 +21,7 @@ exports.createWorkspace = async (req, res, next) => {
         adminEmail: req.body.adminEmail,
         desc: req.body.desc,
         classCode: currClassCode, 
-        className: req.body.className,
-        // meetLink: req.body.meetLink,
-        // fieldName: req.body.fieldName,
-        // classLevel: req.body.classLevel
+        className: req.body.className
     })
     
     newWorkspace.save()
@@ -252,99 +248,6 @@ exports.getCollaborators = (req, res, next) => {
                     })
             }
             res.json(users);
-        })
-        .catch(err => {
-            next(err);
-        })
-}
-
-exports.submitDraft = (req, res, next) => {
-    const studentName = req.body.studentName;
-    const studentEmail = req.body.studentEmail;
-    const draftId = req.body.draftId;
-    const fileLink = req.body.fileLink;
-    const classCode = req.body.classCode;
-    const fileName = req.body.fileName;
-
-    const submission = new Submission({
-        studentName,
-        studentEmail,
-        fileLink,
-        draftId,
-        classCode,
-        fileName
-    })
-
-    submission.save()
-        .then(result => {
-            res.json({message: "Submission created successfully"});
-        })
-        .catch(err => {
-            next(err);
-        })
-}
-
-exports.getSubmission = (req, res, next) => {
-    const draftId = req.body.draftId;
-    const userEmail = req.body.userEmail;
-    
-    Submission.findOne({studentEmail: userEmail, draftId: new ObjectId(draftId)})
-        .then(submission => {
-            if (!submission) {
-                const err = new Error("Submission not found.");
-                err.statusCode = 422;
-                next(err);
-            } else {
-                res.json(submission);
-            }
-        })
-        .catch(err => {
-            next(err);
-        })
-}
-
-exports.deleteSubmission = (req, res, next) => {
-    const draftId = req.body.draftId;
-    const userEmail = req.body.userEmail;
-
-    Submission.deleteOne({draftId: new ObjectId(assignmentId), userEmail: userEmail})
-        .then(result => {
-            res.json({message: "Submission deleted successfully."});
-        })
-        .catch(err => {
-            next(err);
-        })
-}
-
-exports.getSubmissions = (req, res, next) => {
-    const draftId = req.body.draftId;
-    Submission.find({draftId: draftId})
-        .then(submissions => {
-            res.json(submissions);
-        })
-        .catch(err => {
-            next(err);
-        })
-}
-
-exports.setGrade = (req, res, next) => {
-    const submissionId = req.body.submissionId;
-    const grade = req.body.grade;
-    Submission.findById(submissionId)
-        .then(submission => {
-            if (!submission) {
-                const err = new Error("Submission not found.");
-                err.statusCode = 422;
-                next(err);
-            }
-            submission.grade = grade;
-            submission.save()
-                .then(result => {
-                    res.json({message: "Grade saved successfully."});
-                })
-                .catch(err => {
-                    next(err);
-                })
         })
         .catch(err => {
             next(err);

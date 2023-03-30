@@ -63,9 +63,6 @@ const Workspace = () => {
         setClassName(res.data.className);
         setAdminName(res.data.adminName);
         setAdminEmail(res.data.adminEmail);
-        // setClassYear(res.data.classLevel);
-        // setSubject(res.data.fieldName);
-        // setMeetLink(res.data.meetLink);
         setLoading(false);
       })
       .catch(err => {

@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import autosize from "autosize";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import PictureAsPdfIcon from "@material-ui/icons/PictureAsPdf";
-import AssignmentIcon from "@material-ui/icons/Assignment";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import clsx from "clsx";
@@ -11,13 +8,10 @@ import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { makeStyles } from "@material-ui/core/styles";
 import { Modal, ModalBody } from "reactstrap";
+import { selectUserData} from '../../../reduxSlices/authSlice';
+import { useSelector } from 'react-redux';
 import "./CreateDraft.css";
-
-import db, { storage } from "../../../firebase";
 import axios from "axios";
-
-import { useSelector } from "react-redux";
-import { selectUserData } from "../../../reduxSlices/authSlice";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,94 +55,41 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CreateDraft = (props) => {
-  let TextArea = useRef(null);
+  // let TextArea = useRef(null);
   const classes = useStyles();
   const [values, setValues] = useState({
     name: "",
   });
 
   const [loading, setLoading] = useState(false);
-  const [fileInput, setFileInput] = useState(null);
-  const [pdfFileError, setPdfFileError] = useState("");
-  const [error, setError] = useState(false);
-
+  const [error, setError] = useState(null);
   const userData = useSelector(selectUserData);
-
-  const submitFile = (e) => {
-    e.preventDefault();
-
-
-    setLoading(true);
-    const fileName = new Date().getTime();
-    const uploadTask = storage
-      .ref(`drafts/${fileName}`)
-    uploadTask.on("state_changed", console.log, console.error, () => {
-      storage
-        .ref("drafts")
-        .child(fileName)
-        .getDownloadURL()
-        .then(() => {
-          return axios.post(
-            "http://localhost:5000/workspace/createDrafts",
-            {
-              classCode: props.classCode,
-              name: values.name,
-              creatorEmail: userData.userEmail,
-            },
-            {
-              headers: {
-                Authorization: "Bearer " + userData.token,
-              },
-            }
-          );
-        })
-        .then((res) => {
-          props.setShow(false);
-          setLoading(false);
-          console.log(props);
-          props.setIsDraftCreated(true);
-        })
-        .catch((err) => {
-          console.log(err);
-          props.setShow(false);
-          setLoading(false);
-        });
-    });
-  };
-
   const handleChange = (prop) => (event) => {
-    if (prop === "fileInput") {
-      if (!event.target.files[0]) {
-        return;
-      }
-      setFileInput({ [prop]: event.target.files[0] });
-      const fileType = ["application/pdf"];
-      let selectedFile = event.target.files[0];
-      if (selectedFile) {
-        if (selectedFile && fileType.includes(selectedFile.type)) {
-          let reader = new FileReader();
-          reader.readAsDataURL(selectedFile);
-          reader.onloadend = (e) => {
-            setPdfFileError("");
-          };
-        } else {
-          setError(true);
-          setPdfFileError("Please select valid pdf file");
-        }
-      }
-    }
     setValues({ ...values, [prop]: event.target.value });
-  };
+};
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    setLoading(true);
+    axios.post("http://localhost:5000/workspace/createDraft", {
+      name: values.name,
+      classCode: props.classCode,
+      creatorEmail:userData.userEmail
+  },{ headers: { Authorization: 'Bearer ' + userData.token } }
+  )
+  .then((res)=>{
+      console.log(res);
+      console.log("Created");
+      props.setShow(false);
+      window.location.reload(false);
+      setLoading(false);
+  })
+  .catch(err => {
+      setError(err.response.data.message);
+      setLoading(false);
+  });
 
-  const handleSubmit = () => {
-    setValues({
-      name: "",
-    });
-    setFileInput(null);
-  };
-  useEffect(() => {
-    autosize(TextArea);
-  }, []);
+
+  }
 
   return (
     <>
@@ -168,7 +109,7 @@ const CreateDraft = (props) => {
                   >
                     Create Draft
                   </h1>
-                  <form onSubmit={submitFile}>
+                  <form onSubmit={handleSubmit}>
                     <FormControl
                       className={clsx(classes.margin, classes.textField)}
                     >
@@ -179,9 +120,9 @@ const CreateDraft = (props) => {
                         id="name"
                         type="text"
                         margin="normal"
+                        onChange={handleChange("name")}
                         required
                         value={values.name}
-                        onChange={handleChange("name")}
                         startAdornment={
                           <InputAdornment position="start">
                             <PermIdentityIcon />
@@ -189,76 +130,6 @@ const CreateDraft = (props) => {
                         }
                       />
                     </FormControl>
-
-                    {/* <FormControl
-                      className={clsx(classes.margin, classes.textField)}
-                    >
-                      <InputLabel htmlFor="description"></InputLabel>
-                      <Input
-                        style={{
-                          outline: "none",
-                          border: "none",
-                          marginTop: "30px",
-                        }}
-                        placeholder="Enter Assignment Description (Max 20 characters)"
-                        // type
-                        id="description"
-                        ref={(c) => (TextArea = c)}
-                        rows={1}
-                        // margin="normal"
-                        value={values.description}
-                        onChange={handleChange("description")}
-                        required
-                        startAdornment={
-                          <InputAdornment position="start">
-                            <AssignmentIcon />
-                          </InputAdornment>
-                        }
-                      />
-                    </FormControl>
-
-                    <FormControl
-                      className={clsx(classes.margin, classes.textField)}
-                    >
-                      <InputLabel htmlFor="dueDate"></InputLabel>
-                      <Input
-                        style={{ marginTop: "30px" }}
-                        placeholder="Enter DueDate &amp; Time"
-                        type="datetime-local"
-                        id="dueDate"
-                        marginTop="10px"
-                        value={values.dueDate}
-                        required
-                        onChange={handleChange("dueDate")}
-                      />
-                    </FormControl> */}
-
-                    {/* <FormControl
-                      className={clsx(classes.margin, classes.textField)}
-                    >
-                      <InputLabel htmlFor="file"></InputLabel>
-                      <Input
-                        style={{ marginTop: "30px" }}
-                        placeholder="Upload pdf file"
-                        accept=".pdf"
-                        fullWidth
-                        id="pdf"
-                        type="file"
-                        marginTop="30px"
-                        required
-                        onChange={handleChange("fileInput")}
-                        startAdornment={
-                          <InputAdornment position="start">
-                            <PictureAsPdfIcon />
-                          </InputAdornment>
-                        }
-                      />
-                    </FormControl> */}
-                    {/* {pdfFileError && (
-                      <div className="error-msg text-danger">
-                        {pdfFileError}
-                      </div>
-                    )} */}
                     {
                       loading ? (
                         <div className="d-flex justify-content-center mt-4">
@@ -266,20 +137,11 @@ const CreateDraft = (props) => {
                         </div>
                       ) : null
                     }
-                    {!error ? (
-                      <button
-                        type="submit"
-                        style={{ display: "flex", justifyContent: "center" }}
-                        className="m-auto mt-4 form-btn"
-                      >
-                        Create
-                      </button>
-                    ) : (
+                    {(
                       <button
                         type="submit"
                         style={{ display: "flex", justifyContent: "center" }}
                         className="m-auto mt-5 form-btn"
-                        disabled
                       >
                         Create
                       </button>

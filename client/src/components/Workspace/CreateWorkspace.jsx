@@ -2,10 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import autosize from 'autosize';
 import { useSelector } from 'react-redux';
 import DescriptionIcon from '@material-ui/icons/Description';
-import SubjectIcon from '@material-ui/icons/Subject';
 import ClassIcon from '@material-ui/icons/Class';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
-import VideocamIcon from '@material-ui/icons/Videocam';
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import clsx from "clsx";
@@ -64,9 +61,6 @@ const CreateWorkspace = (props) => {
     const [values, setValues] = useState({
         description: "",
         className: "",
-        // fieldName: "",
-        // classLevel: "",
-        // meetLink: ""
     });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -82,10 +76,7 @@ const CreateWorkspace = (props) => {
             adminName: storeData.userName,
             adminEmail: storeData.userEmail,
             desc: values.description,
-            className: values.className,
-            // meetLink: values.meetLink,
-            // fieldName: values.fieldName,
-            // classLevel: values.classLevel
+            className: values.className
         },{ headers: { Authorization: 'Bearer ' + storeData.token } }
         )
         .then((res)=>{
@@ -160,65 +151,6 @@ const CreateWorkspace = (props) => {
                                     }
                                     />
                             </FormControl>
-                            {/* <FormControl className={clsx(classes.margin, classes.textField)}>
-                                <InputLabel htmlFor="field"></InputLabel>
-                                <Input
-                                    style={{marginBottom:"10px"}}
-                                    placeholder="Enter Field Name"
-                                    fullWidth
-                                    id="field"
-                                    type="text"
-                                    margin="normal"
-                                    required
-                                    value={values.fieldName}
-                                    onChange={handleChange("fieldName")}
-                                    startAdornment={
-                                        <InputAdornment position="start">
-                                            <SubjectIcon />
-                                        </InputAdornment>
-                                    }
-                                />
-                            </FormControl>
-
-                            <FormControl className={clsx(classes.margin, classes.textField)}>
-                                <InputLabel htmlFor="classlevel"></InputLabel>
-                                <Input
-                                    style={{marginBottom:"10px"}}
-                                    placeholder="Enter Class Level"
-                                    fullWidth
-                                    id="classlevel"
-                                    type="text"
-                                    margin="normal"
-                                    required
-                                    value={values.classLevel}
-                                    onChange={handleChange("classLevel")}
-                                    startAdornment={
-                                        <InputAdornment position="start">
-                                            <MenuBookIcon />
-                                        </InputAdornment>
-                                    }
-                                />
-                            </FormControl>
-
-                            <FormControl className={clsx(classes.margin, classes.textField)}>
-                                <InputLabel htmlFor="meet"></InputLabel>
-                                <Input
-                                    style={{marginBottom:"10px"}}
-                                    placeholder="Enter Meeting Link"
-                                    fullWidth
-                                    id="meetlink"
-                                    type="text"
-                                    margin="normal"
-                                    required
-                                    value={values.meetLink}
-                                    onChange={handleChange("meetLink")}
-                                    startAdornment={
-                                        <InputAdornment position="start">
-                                            <VideocamIcon />
-                                        </InputAdornment>
-                                    }
-                                />
-                            </FormControl> */}
                             <FormControl className={clsx(classes.margin, classes.textField)}>
                                 {error && <div className='error-msg text-danger'>{error}</div>}
                             </FormControl>

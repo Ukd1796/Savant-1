@@ -11,15 +11,11 @@ router.post('/getWorkspaces', isAuth, workspaceController.getWorkspaces);
 router.post('/joinWorkspace', workspaceController.joinWorkspace);
 router.post('/getWorkspace', workspaceController.getWorkspace);
 router.delete('/deleteWorkspace', workspaceController.deleteWorkspace);
-router.post('/createDrafts', workspaceController.createDraft);
+router.post('/createDraft', workspaceController.createDraft);
 router.post('/getDrafts', workspaceController.getDrafts);
 router.post('/getDraft', workspaceController.getDraft);
 router.post('/getReminders', workspaceController.getReminders);
 router.post('/getCollaborators', workspaceController.getCollaborators);
-router.post('/submitDraft', workspaceController.submitDraft);
-router.post('/getSubmission', workspaceController.getSubmission);
-router.delete('/deleteSubmission', workspaceController.deleteSubmission);
-router.post('/getSubmissions', workspaceController.getSubmissions);
-router.post('/setGrade', workspaceController.setGrade);
+// router.post('/submitDraft', workspaceController.submitDraft);
 
 module.exports = router; 
