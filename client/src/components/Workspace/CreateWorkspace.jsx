@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const CreateClassroom = (props) => {
+const CreateWorkspace = (props) => {
     let TextArea = useRef(null);
     const classes = useStyles();
     const [values, setValues] = useState({
@@ -78,7 +78,7 @@ const CreateClassroom = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoading(true);
-        axios.post("http://localhost:5000/classes/createClassroom", {
+        axios.post("http://localhost:5000/workspace/createWorkspace", {
             adminName: storeData.userName,
             adminEmail: storeData.userEmail,
             desc: values.description,
@@ -243,4 +243,4 @@ const CreateClassroom = (props) => {
     )
 }
 
-export default CreateClassroom
+export default CreateWorkspace

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const classroomSchema = new Schema({
+const workspaceSchema = new Schema({
         adminName: {
             type: String,
             required: true
@@ -30,4 +30,4 @@ const classroomSchema = new Schema({
     }
 )
 
-module.exports = mongoose.model('Classroom', classroomSchema);
+module.exports = mongoose.model('Workspace', workspaceSchema);

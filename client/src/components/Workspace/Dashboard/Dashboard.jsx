@@ -6,15 +6,15 @@ import "./Dashboard.css";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import SideDash from './SideDash';
 import Banner from './Banner';
-import ClassList from './ClassList';
+import List from './List';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { selectUserData} from '../../../reduxSlices/authSlice';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
-import CreateClassroom from '../CreateClassroom'; 
-import JoinClassroom from '../JoinClassroom';
+import CreateWorkspace from '../CreateWorkspace'; 
+import JoinWorkspace from '../JoinWorkspace';
 
 const Dashboard = () => {
   const [owned, setOwned] = useState([]);
@@ -31,7 +31,7 @@ const Dashboard = () => {
     if (storeData.token){
       setLoading(true);
       console.log(storeData);
-      await axios.post("http://localhost:5000/classes/getClassrooms", {
+      await axios.post("http://localhost:5000/workspace/getWorkspaces", {
         userEmail: storeData.userEmail,
         type:"owned"
       },{ headers: { Authorization: 'Bearer ' + storeData.token } }
@@ -41,7 +41,7 @@ const Dashboard = () => {
         setOwned(res.data);
       })
       .catch(err => console.log(err));
-      await axios.post("http://localhost:5000/classes/getClassrooms", {
+      await axios.post("http://localhost:5000/workspace/getWorkspaces", {
         userEmail: storeData.userEmail,
         type:"enrolled"
       },{ headers: { Authorization: 'Bearer ' + storeData.token } }
@@ -76,7 +76,7 @@ const Dashboard = () => {
                   <Banner/>
                 </div>
                 <div className="row m-3 mx-0 mx-md-3">
-                  <ClassList setLoading={setLoading} owned={owned} enrolled={enrolled} />
+                  <List setLoading={setLoading} owned={owned} enrolled={enrolled} />
                 </div>
               </div>
             </div>
@@ -106,8 +106,8 @@ const Dashboard = () => {
                 </DropdownMenu>
               </Dropdown>
             </div>
-            <CreateClassroom isModalOpen={show} toggleModal={toggle} setShow={setShow}/>
-            <JoinClassroom isModalOpen={showJoin} toggleModal={toggleJoin} setShow={setShowJoin}/>
+            <CreateWorkspace isModalOpen={show} toggleModal={toggle} setShow={setShow}/>
+            <JoinWorkspace isModalOpen={showJoin} toggleModal={toggleJoin} setShow={setShowJoin}/>
           </div>
         ) 
       }

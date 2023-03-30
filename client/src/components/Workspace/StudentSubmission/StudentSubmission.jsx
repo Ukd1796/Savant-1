@@ -32,7 +32,7 @@ const StudentSubmission = () => {
 
     const getSubmission = () => {
         setLoading(true);
-        axios.post("http://localhost:5000/classes/getSubmission", {
+        axios.post("http://localhost:5000/workspace/getSubmission", {
             assignmentId: assignmentId,
             userEmail: userData.userEmail
         },
@@ -54,7 +54,7 @@ const StudentSubmission = () => {
 
     const getAssignment = () => {
         setPageLoading(true);
-        axios.post("http://localhost:5000/classes/getAssignment", {
+        axios.post("http://localhost:5000/workspace/getAssignment", {
             assignmentId: assignmentId
         }, 
         {
@@ -69,13 +69,13 @@ const StudentSubmission = () => {
         .catch(err => {
             console.log(err);
             setPageLoading(false);
-            history.replace('/classes/' + classCode);
+            history.replace('/workspace/' + classCode);
         })
     }
 
     const getClassDetails = () => {
         setClassLoading(true);
-        axios.post("http://localhost:5000/classes/getClassroom", 
+        axios.post("http://localhost:5000/workspace/getClassroom", 
         {
             classCode: classCode
         },
@@ -91,7 +91,7 @@ const StudentSubmission = () => {
         })
         .catch(err => {
             console.log(err);
-            history.replace('/classes');
+            history.replace('/workspace');
             setClassLoading(false);
         })
     }
@@ -114,7 +114,7 @@ const StudentSubmission = () => {
         uploadTask.on('state_changed', console.log, console.error, () => {
             storage.ref('submissions').child(fileName).getDownloadURL()
                     .then(firebaseURL => {
-                    return axios.post('http://localhost:5000/classes/submitAssignment', {
+                    return axios.post('http://localhost:5000/workspace/submitAssignment', {
                         assignmentId: assignmentId,
                         studentName: userData.userName,
                         studentEmail: userData.userEmail,
@@ -142,7 +142,7 @@ const StudentSubmission = () => {
 
     const unSubmitFile = () => {
         setLoading(true);
-        axios.delete("http://localhost:5000/classes/deleteSubmission", {
+        axios.delete("http://localhost:5000/workspace/deleteSubmission", {
             data: {
                 assignmentId: assignmentId,
                 userEmail: userData.userEmail
@@ -241,7 +241,7 @@ const StudentSubmission = () => {
             <div className="container mt-3">
                 <div className="row">
                     <div className="col d-flex mt-5 fs-3 justify-content-left border-bot">
-                        <a className="ClassHeading" href={"/classes/" + classCode}>
+                        <a className="ClassHeading" href={"/workspace/" + classCode}>
                             {classDetails.className}
                         </a>
                     </div>

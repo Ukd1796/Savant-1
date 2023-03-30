@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import "./Dashboard.css";
 import AddIcon from '@material-ui/icons/Add';
-import CreateClassroom from '../CreateClassroom';
-import JoinClassroom from '../JoinClassroom';
+import CreateWorkspace from '../CreateWorkspace';
+import JoinWorkspace from '../JoinWorkspace';
 import Card1 from "../../../assets/card1.svg";
 import Card2 from "../../../assets/card2.svg";
 import Card3 from "../../../assets/card3.svg";
 import Card4 from "../../../assets/card4.svg";
 import Card5 from "../../../assets/card5.svg";
 import { Link } from 'react-router-dom';
-const ClassList = (props) => {
+const List = (props) => {
   const [show, setShow] = useState(false);
   const [showJoin, setShowJoin] = useState(false);
   const toggle = () => setShow(prevState => !prevState);
@@ -58,14 +58,14 @@ const ClassList = (props) => {
           // console.log(history);
           return (
             <div key={index} className="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-              <Link to={"/classes/" + sub.classCode} style={{ maxWidth: "100%", minWidth: "100%" }}>
+              <Link to={"/workspace/" + sub.classCode} style={{ maxWidth: "100%", minWidth: "100%" }}>
                 <div className="d-none d-md-flex card class-card card-width mx-auto" style={backgroundStyle}>
                   <img src={card} className="mx-auto mt-3" height="130px" />
                   <div className="card-body m-3 mx-md-4 rounded-3" style={{ backgroundColor: "#fff" }}>
                     <h5 className="card-title heading-3 text-start mb-0">{sub.className}</h5>
                     <p className="card-text text-dark mb-1"><span className="text-muted" style={{ fontSize: "16px" }}>{sub.adminName}</span></p>
                     <p className="card-text text-dark mb-1" style={{ fontSize: "14px" }}>{sub.desc}</p>
-                    <a href={sub.meetLink} target="_blank" className="card-link text-primary">{sub.meetLink}</a>
+                    {/* <a href={sub.meetLink} target="_blank" className="card-link text-primary">{sub.meetLink}</a> */}
                   </div>
                 </div>
               </Link>
@@ -110,7 +110,7 @@ const ClassList = (props) => {
           }
           return (
             <div key={index} className="col-12 col-md-6 col-lg-4 d-flex justify-content-center card-width-mobile">
-              <Link to={"/classes/" + sub.classCode} className="card-width-mobile">
+              <Link to={"/workspace/" + sub.classCode} className="card-width-mobile">
                 <div className="d-block d-md-none card mb-4" style={backgroundStyle}>
                   <div className="row g-0">
                     <div className="col-4 d-flex justify-content-center">
@@ -121,7 +121,7 @@ const ClassList = (props) => {
                         <h5 className="card-title heading-3 text-start px-0 mb-0">{sub.className}</h5>
                         <p className="card-text text-dark mb-1"><span className="text-muted">{sub.adminName}</span></p>
                         <p className="card-text text-dark mobile-card-desc mb-1">{sub.desc}</p>
-                        <a href={sub.meetLink} target="_blank" className="card-link text-primary">{sub.meetLink}</a>
+                        {/* <a href={sub.meetLink} target="_blank" className="card-link text-primary">{sub.meetLink}</a> */}
                       </div>
                     </div>
                   </div>
@@ -143,7 +143,7 @@ const ClassList = (props) => {
 
           <div className="row join-links pt-2 pb-2">
             <div className="row d-flex">
-              <div className="d-flex justify-content-between Classroom_Navtab mt-3">
+              <div className="d-flex justify-content-between Workspace_Navtab mt-3">
                 <div>
                   <button className="join-create-btn" onClick={() => setShowJoin(true)}>
                     <AddIcon className="pe-1 mb-1"></AddIcon>
@@ -157,8 +157,8 @@ const ClassList = (props) => {
               </div>
             </div>
           </div>
-          <CreateClassroom isModalOpen={show} toggleModal={toggle} setShow={setShow} />
-          <JoinClassroom isModalOpen={showJoin} toggleModal={toggleJoin} setShow={setShowJoin} />
+          <CreateWorkspace isModalOpen={show} toggleModal={toggle} setShow={setShow} />
+          <JoinWorkspace isModalOpen={showJoin} toggleModal={toggleJoin} setShow={setShowJoin} />
 
 
           <div className="col-12">
@@ -200,4 +200,4 @@ const ClassList = (props) => {
   );
 }
 
-export default ClassList;
+export default List;

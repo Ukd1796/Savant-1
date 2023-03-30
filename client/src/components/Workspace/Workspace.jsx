@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from "react";
-import "./Classroom.css";
+import "./Workspace.css";
 import { useParams, useHistory, useLocation } from "react-router-dom";
 import MobileHeader from "../partials/Header/MobileHeader";
 import Header from "../partials/Header/Header";
 import FooterNav from "../partials/FooterNav/FooterNav";
 import { getDateFromTimestamp, getTimeFromTimestamp } from "../../utilities";
-import Assignments from './Assignments';
-import Attendees from "./Attendees";
+import Drafts from './Drafts';
+import Collaborators from "./Collaborators";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import VideocamIcon from "@material-ui/icons/Videocam";
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import { Button } from 'reactstrap';
-import CreateAssignment from "./CreateAssignment";
+import CreateDraft from "./WritePaper/CreateDraft";
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { selectUserData } from '../../reduxSlices/authSlice';
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
 
-const Classroom = () => {
+const Workspace = () => {
   const storeData = useSelector(selectUserData);
   const history = useHistory();
   const location = useLocation().pathname;
@@ -36,22 +36,22 @@ const Classroom = () => {
   const [show, setShow] = useState(false);
   const toggle = () => setShow(prevState => !prevState);
   const [loading, setLoading] = useState(false);
-  const [isAssignmentCreated, setIsAssignmentCreated] = useState(false);
+  const [isDraftCreated, setIsDraftCreated] = useState(false);
   const [reminderLoading, setReminderLoading] = useState(false);
 
   useEffect(() => {
-    if (!activeTab) setActiveTab("assignments");
-    if (activeTab === "assignments") {
-      history.replace('/classes/' + classCode + '/assignments');
-    } else if (activeTab === "attendees") {
-      history.replace('/classes/' + classCode + '/attendees');
+    if (!activeTab) setActiveTab("drafts");
+    if (activeTab === "drafts") {
+      history.replace('/workspace/' + classCode + '/drafts');
+    } else if (activeTab === "collaborators") {
+      history.replace('/workspace/' + classCode + '/collaborators');
     }
   }, [activeTab])
   const toggle_dropdown = () => setDropdownOpen(prevState => !prevState);
   useEffect(() => {
     setLoading(true);
     // axios Request for getting className, adminName, adminEmail, year, subject
-    axios.post("http://localhost:5000/classes/getClassroom", {
+    axios.post("http://localhost:5000/workspace/getWorkspace", {
       classCode: classCode
     }, { headers: { Authorization: 'Bearer ' + storeData.token } }
     )
@@ -59,15 +59,15 @@ const Classroom = () => {
         setClassName(res.data.className);
         setAdminName(res.data.adminName);
         setAdminEmail(res.data.adminEmail);
-        setClassYear(res.data.classLevel);
-        setSubject(res.data.fieldName);
-        setMeetLink(res.data.meetLink);
+        // setClassYear(res.data.classLevel);
+        // setSubject(res.data.fieldName);
+        // setMeetLink(res.data.meetLink);
         setLoading(false);
       })
       .catch(err => {
         console.log(err.response);
         setLoading(false);
-        history.replace('/classes');
+        history.replace('/workspace');
       })
 
   }, []);
@@ -75,14 +75,14 @@ const Classroom = () => {
   useEffect(async () => {
     if (storeData.token) {
       setReminderLoading(true);
-      axios.post("http://localhost:5000/classes/getReminders", {
+      axios.post("http://localhost:5000/workspace/getReminders", {
         userEmail: storeData.userEmail
       }, { headers: { Authorization: 'Bearer ' + storeData.token } }
       )
         .then(async (res) => {
           let reminders = [];
           for (let reminder of res.data) {
-            await axios.post("http://localhost:5000/classes/getClassroom", {
+            await axios.post("http://localhost:5000/workspace/getWorkspace", {
               classCode: reminder.classCode
             })
               .then(classDetails => {
@@ -103,13 +103,13 @@ const Classroom = () => {
   }, [storeData.token])
 
   const deleteClass = () => {
-    axios.delete("http://localhost:5000/classes/deleteClassroom", {
+    axios.delete("http://localhost:5000/workspace/deleteWorkspace", {
       data: { classCode: classCode }
     }, { headers: { Authorization: 'Bearer ' + storeData.token } }
     )
       .then((res) => {
         console.log("deleted");
-        history.push("/classes");
+        history.push("/workspace");
       })
       .catch(err => { console.log(err.response); })
   }
@@ -117,7 +117,7 @@ const Classroom = () => {
   return (
     <>
       {(!loading) ? (
-        <div className="Classroom">
+        <div className="Workspace">
           <div className="d-none d-md-block">
             <Header />
           </div>
@@ -125,15 +125,14 @@ const Classroom = () => {
             <MobileHeader />
           </div>
           <div className="row m-0 justify-content-center">
-            <div className="Classroom_Info col-11 col-md-10 col-lg-9 col-xl-11 d-flex justify-content-between content-box mt-4 py-2 px-2 py-sm-3 px-sm-4">
+            <div className="Workspace_Info col-11 col-md-10 col-lg-9 col-xl-11 d-flex justify-content-between content-box mt-4 py-2 px-2 py-sm-3 px-sm-4">
               <div className="d-flex">
                 <div className="Horizontal_Line"></div>
                 <div className="d-flex flex-column">
                   <div>
                     <h2 className="ClassName ms-1">{className}</h2>
                   </div>
-                  <div className="d-flex Classroom_Desc">
-                    <div className="Side_Border"></div>
+                  <div className="d-flex Workspace_Desc">
                     <div className="Side_Border">Admin Name: {adminName}</div>
                   </div>
                   <div className="Class_Code mt-4 mb-2">
@@ -164,55 +163,49 @@ const Classroom = () => {
             </div>
             <div className="col-12 col-md-10 col-lg-9 col-xl-11">
               <div className="row d-flex">
-                <div className="d-flex justify-content-between Classroom_Navtab mt-3">
+                <div className="d-flex justify-content-between Workspace_Navtab mt-3">
                   <div
-                    onClick={() => setActiveTab("assignments")}
-                    className={activeTab === "assignments" ? "active" : ""}
+                    onClick={() => setActiveTab("drafts")}
+                    className={activeTab === "drafts" ? "active" : ""}
                   >
-                    Drafts
+                    Write Paper
                   </div>
                   <div
-                    onClick={() => setActiveTab("assignments")}
-                    className={activeTab === "assignments" ? "active" : ""}
+                    onClick={() => setActiveTab("find")}
+                    className={activeTab === "find" ? "active" : ""}
                   >
                     Find Papers
                   </div>
                   <div
-                    onClick={() => setActiveTab("assignments")}
-                    className={activeTab === "assignments" ? "active" : ""}
-                  >
-                    Write Papers
-                  </div>
-                  <div
-                    onClick={() => setActiveTab("assignments")}
-                    className={activeTab === "assignments" ? "active" : ""}
+                    onClick={() => setActiveTab("upload")}
+                    className={activeTab === "upload" ? "active" : ""}
                   >
                     Upload Papers
                   </div>
                   <div
-                    onClick={() => setActiveTab("attendees")}
-                    className={activeTab === "attendees" ? "active" : ""}
+                    onClick={() => setActiveTab("collaborators")}
+                    className={activeTab === "collaborators" ? "active" : ""}
                   >
                     Collaborators
                   </div>
                 </div>
               </div>
               <div className="row justify-content-between mt-3">
-                <div className="Classroom_Body m-0 p-0">
+                <div className="Workspace_Body m-0 p-0">
                   {
 
-                    activeTab === "assignments" ? (
-                      <Assignments
-                        setIsAssignmentCreated={setIsAssignmentCreated}
-                        isAssignmentCreated={isAssignmentCreated}
+                    activeTab === "drafts" ? (
+                      <Drafts
+                        setIsDraftCreated={setIsDraftCreated}
+                        isDraftCreated={isDraftCreated}
                         classCode={classCode}
                         adminEmail={adminEmail}
                       />) :
-                      activeTab === "attendees" ? <Attendees classCode={classCode} adminName={adminName} adminEmail={adminEmail} /> : null
+                      activeTab === "collaborators" ? <Collaborators classCode={classCode} adminName={adminName} adminEmail={adminEmail} /> : null
                   }
 
                 </div>
-                {/* <div className="Reminders">
+                <div className="Reminders">
                   <div className="content-box py-3 px-2 px-md-4 py-md-3 mb-3">
                     <h6 className="ms-1">Reminders</h6>
                     {
@@ -222,7 +215,7 @@ const Classroom = () => {
                           style.borderBottom = "1px solid #ccc";
                         }
                         return (
-                          <a key={reminder._id} href={"/classes/" + reminder.classCode + "/assignment/" + reminder._id}>
+                          <a key={reminder._id} href={"/classes/" + reminder.classCode + "/Draft/" + reminder._id}>
                             <div
                               className="d-flex flex-column Reminder px-2 py-2 py-md-3"
                               style={style}
@@ -277,15 +270,15 @@ const Classroom = () => {
                     ) :(<></>)
                   }
 
-                </div> */}
+                </div>
               </div>
             </div>
           </div>
           <div className="d-block d-md-none">
             <FooterNav />
           </div>
-          <CreateAssignment
-            setIsAssignmentCreated={setIsAssignmentCreated}
+          <CreateDraft
+            setIsDraftCreated={setIsDraftCreated}
             classCode={classCode}
             isModalOpen={show}
             toggleModal={toggle}
@@ -302,4 +295,4 @@ const Classroom = () => {
   );
 };
 
-export default Classroom;
+export default Workspace;

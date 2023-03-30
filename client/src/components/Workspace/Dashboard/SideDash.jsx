@@ -3,8 +3,8 @@ import "./Dashboard.css";
 import {Link} from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import AddIcon from '@material-ui/icons/Add';
-import CreateClassroom from '../CreateClassroom'; 
-import JoinClassroom from '../JoinClassroom';
+import CreateWorkspace from '../CreateWorkspace'; 
+import JoinWorkspace from '../JoinWorkspace';
 const SideDash = (props) => {
   const [show, setShow] = useState(false);
   const [showJoin, setShowJoin] = useState(false);

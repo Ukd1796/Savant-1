@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const JoinClassroom = (props) => {
+const JoinWorkspace = (props) => {
     const classes = useStyles();
     const [classCode, setClassCode] = useState("");
     const [error, setError] = useState(false);
@@ -75,7 +75,7 @@ const JoinClassroom = (props) => {
         }
         else{
             setLoading(true);
-            axios.post("http://localhost:5000/classes/joinClassroom", {
+            axios.post("http://localhost:5000/workspace/joinWorkspace", {
                 userEmail: storeData.userEmail,
                 classCode: classCode
             },{ headers: { Authorization: 'Bearer ' + storeData.token } }
@@ -164,4 +164,4 @@ const JoinClassroom = (props) => {
     )
 }
 
-export default JoinClassroom
+export default JoinWorkspace

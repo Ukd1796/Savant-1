@@ -5,14 +5,14 @@ import { useSelector } from 'react-redux';
 import { selectUserData } from '../../reduxSlices/authSlice';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const Attendees = ({adminName, adminEmail, classCode}) => {
-    const [attendees, setAttendees] = useState([]);
+const Collaborators = ({adminName, adminEmail, classCode}) => {
+    const [collaborators, setCollaborators] = useState([]);
     const userData = useSelector(selectUserData);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setLoading(true);
-        axios.post("http://localhost:5000/classes/getAttendees", {
+        axios.post("http://localhost:5000/classes/getCollaborators", {
             classCode: classCode
         },
         {
@@ -21,7 +21,7 @@ const Attendees = ({adminName, adminEmail, classCode}) => {
             }   
         })
         .then(res => {
-            setAttendees(res.data);
+            setCollaborators(res.data);
             setLoading(false);
         })
         .catch(err => {
@@ -32,7 +32,7 @@ const Attendees = ({adminName, adminEmail, classCode}) => {
 
     return (
         <div className="content-box py-3 px-4 pb-4 mb-5">
-            <div className="Attendees_Title mt-3">Admin</div>
+            <div className="Collaborators_Title mt-3">Admin</div>
             <hr className="m-0"></hr>
             <div className="d-flex mt-3">
                 <div className="Avatar_Container Avatar_Small">
@@ -44,11 +44,11 @@ const Attendees = ({adminName, adminEmail, classCode}) => {
                     {adminName}
                 </div>
             </div>
-            <div className="Attendees_Title mt-4">Members</div>
+            <div className="Collaborators_Title mt-4">Members</div>
             <hr className="m-0"></hr>
             {
-                loading ? <div className="d-flex justify-content-center mt-4 mb-2"><CircularProgress /></div> : attendees.length !== 0 ? 
-                    attendees.map(member => {
+                loading ? <div className="d-flex justify-content-center mt-4 mb-2"><CircularProgress /></div> : collaborators.length !== 0 ? 
+                    collaborators.map(member => {
                         return (
                             <div key={member._id} className="d-flex mt-3">
                                 <div className="Avatar_Container Avatar_Small">
@@ -67,4 +67,4 @@ const Attendees = ({adminName, adminEmail, classCode}) => {
     )
 }
 
-export default Attendees;
+export default Collaborators;

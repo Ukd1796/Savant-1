@@ -9,11 +9,11 @@ app.use(express.json());
 app.use(cors());
 
 const authRoutes = require('./routes/auth');
-const classroomRoutes = require('./routes/classroom');
+const workspaceRoutes = require('./routes/workspace');
 
 
 app.use('/auth', authRoutes);
-app.use('/classes', classroomRoutes);
+app.use('/workspace', workspaceRoutes);
 
 
 // if ( process.env.NODE_ENV === "production" || 1) { 

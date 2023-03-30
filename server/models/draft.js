@@ -1,20 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const assignmentSchema = new Schema({
+const draftSchema = new Schema({
         name: {
-            type: String,
-            required: true
-        },
-        desc: {
-            type: String,
-            required: true
-        },
-        dueDate: {
-            type: Date,
-            required: true
-        },
-        fileLink: {
             type: String,
             required: true
         },
@@ -32,4 +20,4 @@ const assignmentSchema = new Schema({
     }
 )
 
-module.exports = mongoose.model('Assignment', assignmentSchema);
+module.exports = mongoose.model('Draft', draftSchema);

@@ -1,12 +1,12 @@
 const ObjectId = require('mongoose').Types.ObjectId; 
 
-const Classroom = require('../models/classroom');
+const Workspace = require('../models/workspace');
 const classCode = require('../models/classCode');
 const User = require('../models/user');
-const Assignment = require('../models/assignment');
+const Draft = require('../models/draft');
 const Submission = require('../models/submission');
 
-exports.createClassroom = async (req, res, next) => {
+exports.createWorkspace = async (req, res, next) => {
     let currClassCode;
     await classCode.findOne().then(obj => {
         currClassCode = obj.code + 1;
@@ -17,7 +17,7 @@ exports.createClassroom = async (req, res, next) => {
         next(err);
     })
 
-    const newClassroom = new Classroom({
+    const newWorkspace = new Workspace({
         adminName: req.body.adminName,
         adminEmail: req.body.adminEmail,
         desc: req.body.desc,
@@ -28,7 +28,7 @@ exports.createClassroom = async (req, res, next) => {
         // classLevel: req.body.classLevel
     })
     
-    newClassroom.save()
+    newWorkspace.save()
         .then(result => {
             User.findOne({email: req.body.adminEmail}).then(user => {
                 user.classesOwned.push(currClassCode);
@@ -36,18 +36,18 @@ exports.createClassroom = async (req, res, next) => {
             }).catch(err => {
                 next(err);
             })
-            res.status(201).json({message: "Classroom created successfully"});
+            res.status(201).json({message: "Workspace created successfully"});
         })
         .catch(err => {
             next(err);
         })
 }
 
-exports.getClassrooms = (req, res, next) => {
+exports.getWorkspaces = (req, res, next) => {
     const type = req.body.type;
     const userEmail = req.body.userEmail;
     if (type === "owned") {
-        Classroom.find({adminEmail: userEmail})
+        Workspace.find({adminEmail: userEmail})
             .then(results => {
                 res.json(results);
             }).catch(err => {
@@ -56,7 +56,7 @@ exports.getClassrooms = (req, res, next) => {
     } else if (type === "enrolled") {
         User.findOne({email: userEmail})
             .then(user => {
-                Classroom.find({classCode: user.classesEnrolled})
+                Workspace.find({classCode: user.classesEnrolled})
                     .then(results => {
                         res.json(results);
                     })
@@ -73,23 +73,23 @@ exports.getClassrooms = (req, res, next) => {
     }
 }
 
-exports.joinClassroom = (req, res, next) => {
+exports.joinWorkspace = (req, res, next) => {
     const userEmail = req.body.userEmail;
     const classCode = req.body.classCode;
-    Classroom.findOne({classCode: classCode})
-        .then(classroom => {
-            if (!classroom) {
-                const err = new Error("Classroom with given class code does not exists.");
+    Workspace.findOne({classCode: classCode})
+        .then(workspace => {
+            if (!workspace) {
+                const err = new Error("Workspace with given class code does not exists.");
                 err.statusCode = 403;
                 next(err);
             }
-            if (classroom.members.indexOf(userEmail) >= 0) {
+            if (workspace.members.indexOf(userEmail) >= 0) {
                 const err = new Error("User already Enrolled.");
                 err.statusCode = 403;
                 next(err);
             }
-            classroom.members.push(userEmail);
-            return classroom.save();
+            workspace.members.push(userEmail);
+            return workspace.save();
         })
         .then(result => {
             return User.findOne({email: userEmail});
@@ -111,18 +111,18 @@ exports.joinClassroom = (req, res, next) => {
         })
 }
 
-exports.deleteClassroom = (req, res, next) => {
+exports.deleteWorkspace = (req, res, next) => {
     const classCode = req.body.classCode;
     // console.log(classCode);
-    Classroom.findOneAndDelete({classCode: classCode})
-        .then(async classroom => {
-            if (!classroom) {
+    Workspace.findOneAndDelete({classCode: classCode})
+        .then(async workspace => {
+            if (!workspace) {
                 const err = new Error("ClassCode does not exists");
                 err.statusCode = 422;
                 next(err);
             } 
 
-            classroom.members.forEach(async memberEmail => {
+            workspace.members.forEach(async memberEmail => {
                 await User.findOne({email: memberEmail})
                     .then(user => {
                         if (user) {
@@ -148,54 +148,48 @@ exports.deleteClassroom = (req, res, next) => {
         })
 }
 
-exports.getClassroom = (req, res, next) => {
+exports.getWorkspace = (req, res, next) => {
     const classCode = req.body.classCode;
-    Classroom.findOne({classCode: classCode})
-        .then(classroom => {
-            if (!classroom) {
+    Workspace.findOne({classCode: classCode})
+        .then(workspace => {
+            if (!workspace) {
                 const err = new Error("Invalid classcode.");
                 err.statusCode = 422;
                 next(err);
             }
 
-            res.json(classroom);
+            res.json(workspace);
         })
         .catch(err => {
             next(err);
         })
 }
 
-exports.createAssignment = (req, res, next) => {
+exports.createDraft = (req, res, next) => {
     // console.log(req.body);
 
     const classCode = req.body.classCode;
     const name = req.body.name;
-    const desc = req.body.desc;
-    const dueDate = req.body.dueDate;
-    const fileLink = req.body.fileLink;
     const creatorEmail = req.body.creatorEmail;
 
-    const assignment = new Assignment({
+    const draft = new Draft({
         classCode: classCode,
         name: name,
-        desc: desc,
-        dueDate: dueDate,
-        fileLink: fileLink,
         creatorEmail: creatorEmail
     })
 
-    assignment.save()
+    draft.save()
         .then(result => {
-            res.json({message: "Assignment created successfully"});
+            res.json({message: "Draft created successfully"});
         })
         .catch(err => {
             next(err);
         })
 }
 
-exports.getAssignments = (req, res, next) => {
+exports.getDrafts = (req, res, next) => {
     const classCode = req.body.classCode;
-    Assignment.find({classCode: classCode}).sort({dueDate: 1})
+    Draft.find({classCode: classCode}).sort({dueDate: 1})
         .then(results => {
             res.json(results);
         })
@@ -204,13 +198,13 @@ exports.getAssignments = (req, res, next) => {
         })
 }
 
-exports.getAssignment = (req, res, next) => {
-    const assignmentId = req.body.assignmentId;
-    Assignment.findById(assignmentId)
-        .then(assignment => {
-            User.findOne({email: assignment.creatorEmail})
+exports.getDraft = (req, res, next) => {
+    const draftId = req.body.draftId;
+    Draft.findById(draftId)
+        .then(draft => {
+            User.findOne({email: draft.creatorEmail})
                 .then(user => {
-                    res.json({...assignment._doc, creatorName: user.name});
+                    res.json({...draft._doc, creatorName: user.name});
                 })
                 .catch(err => {
                     next(err);
@@ -232,7 +226,7 @@ exports.getReminders = (req, res, next) => {
                 next(err);
             }
             for(let enrolledClassCode of user.classesEnrolled) {
-                await Assignment.find({classCode: enrolledClassCode, dueDate: {$gte: Date.now()}})
+                await Draft.find({classCode: enrolledClassCode, dueDate: {$gte: Date.now()}})
                     .then(results => {
                         reminders = reminders.concat(results);
                     })
@@ -246,12 +240,12 @@ exports.getReminders = (req, res, next) => {
         })
 }
 
-exports.getAttendees = (req, res, next) => {
+exports.getCollaborators = (req, res, next) => {
     const classCode = req.body.classCode;
-    Classroom.findOne({classCode: classCode})
-        .then(async classroom => {
+    Workspace.findOne({classCode: classCode})
+        .then(async workspace => {
             let users = [];
-            for (let email of classroom.members) {
+            for (let email of workspace.members) {
                 await User.findOne({email: email})
                     .then(user => {
                         users.push({email: user.email, name: user.name, _id: user._id});
@@ -264,10 +258,10 @@ exports.getAttendees = (req, res, next) => {
         })
 }
 
-exports.submitAssignment = (req, res, next) => {
+exports.submitDraft = (req, res, next) => {
     const studentName = req.body.studentName;
     const studentEmail = req.body.studentEmail;
-    const assignmentId = req.body.assignmentId;
+    const draftId = req.body.draftId;
     const fileLink = req.body.fileLink;
     const classCode = req.body.classCode;
     const fileName = req.body.fileName;
@@ -276,7 +270,7 @@ exports.submitAssignment = (req, res, next) => {
         studentName,
         studentEmail,
         fileLink,
-        assignmentId,
+        draftId,
         classCode,
         fileName
     })
@@ -291,10 +285,10 @@ exports.submitAssignment = (req, res, next) => {
 }
 
 exports.getSubmission = (req, res, next) => {
-    const assignmentId = req.body.assignmentId;
+    const draftId = req.body.draftId;
     const userEmail = req.body.userEmail;
     
-    Submission.findOne({studentEmail: userEmail, assignmentId: new ObjectId(assignmentId)})
+    Submission.findOne({studentEmail: userEmail, draftId: new ObjectId(draftId)})
         .then(submission => {
             if (!submission) {
                 const err = new Error("Submission not found.");
@@ -310,10 +304,10 @@ exports.getSubmission = (req, res, next) => {
 }
 
 exports.deleteSubmission = (req, res, next) => {
-    const assignmentId = req.body.assignmentId;
+    const draftId = req.body.draftId;
     const userEmail = req.body.userEmail;
 
-    Submission.deleteOne({assignmentId: new ObjectId(assignmentId), userEmail: userEmail})
+    Submission.deleteOne({draftId: new ObjectId(assignmentId), userEmail: userEmail})
         .then(result => {
             res.json({message: "Submission deleted successfully."});
         })
@@ -323,8 +317,8 @@ exports.deleteSubmission = (req, res, next) => {
 }
 
 exports.getSubmissions = (req, res, next) => {
-    const assignmentId = req.body.assignmentId;
-    Submission.find({assignmentId: assignmentId})
+    const draftId = req.body.draftId;
+    Submission.find({draftId: draftId})
         .then(submissions => {
             res.json(submissions);
         })

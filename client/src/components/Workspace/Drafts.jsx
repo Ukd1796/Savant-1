@@ -7,15 +7,15 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { selectUserData} from '../../reduxSlices/authSlice';
 import CircularProgress from "@material-ui/core/CircularProgress";
-import CreateAssignment from "./CreateAssignment";
+import CreateAssignment from "./WritePaper/CreateDraft";
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import { Button} from 'reactstrap';
 
 
-const Assignments = ({classCode, adminEmail, isAssignmentCreated, setIsAssignmentCreated}) => {
+const Drafts = ({classCode, adminEmail, isDraftCreated, setIsDraftCreated}) => {
     const storeData = useSelector(selectUserData);
     const [show, setShow] = useState(false);
-    const [assignments, setAssignments] = useState([]);
+    const [drafts, setDrafts] = useState([]);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const toggle = () => setDropdownOpen(prevState => !prevState);
     const [showCreate, setShowCreate] = useState(false);
@@ -23,30 +23,30 @@ const Assignments = ({classCode, adminEmail, isAssignmentCreated, setIsAssignmen
     const [loading, setLoading] = useState(false);
     const [adminName, setAdminName] = useState();
 
-    const getAssignments = () => {
+    const getDrafts = () => {
         setLoading(true);
-        axios.post("http://localhost:5000/classes/getAssignments", {
+        axios.post("http://localhost:5000/workspace/getDrafts", {
             classCode: classCode
         },{ headers: { Authorization: 'Bearer ' + storeData.token } }
         )
         .then((res)=>{
-            setAssignments(res.data);
+            setDrafts(res.data);
             setLoading(false);
         })
         .catch(err => {console.log(err.response);setLoading(false);})
     }
 
     useEffect(async () => {
-        getAssignments();
+        getDrafts();
     }, []);
 
     useEffect(() => {
-        if (isAssignmentCreated) {
-            getAssignments();
+        if (isDraftCreated) {
+            getDrafts();
             window.scrollTo(0, 0);
         }
-        setIsAssignmentCreated(false);
-    }, [isAssignmentCreated]);
+        setIsDraftCreated(false);
+    }, [isDraftCreated]);
 
     return (
         <div className="Assignments content-box py-3 px-4 pt-4">
@@ -65,35 +65,35 @@ const Assignments = ({classCode, adminEmail, isAssignmentCreated, setIsAssignmen
                     <div className="col-12 d-flex justify-content-center align-items-center mt-4 mb-4">
                         <CircularProgress size={50} className="display-block"/>
                     </div>
-                ) : assignments.length !== 0 ? (
+                ) : drafts.length !== 0 ? (
                     <>
                     {
                         
-                        assignments.map(assignment => {
+                        drafts.map(draft => {
                             return (
-                                <div key={assignment._id}>
+                                <div key={draft._id}>
                                     <a href={( storeData.userEmail=== adminEmail ) ?
-                                        "/classes/"+classCode+"/assignment/"+assignment._id+"/admin" :
-                                        "/classes/"+classCode+"/assignment/"+assignment._id
+                                        "/workspace/"+classCode+"/drafts/"+draft._id+"/admin" :
+                                        "/workspace/"+classCode+"/drafts/"+draft._id
                                     } >
                                         
-                                        <div className="d-flex justify-content-between">
+                                        {/* <div className="d-flex justify-content-between">
                                             <div className="Assignment_Date">
-                                                {getDateStringFromTimestamp(assignment.dueDate)}
+                                                {getDateStringFromTimestamp(draft.dueDate)}
                                             </div>
                                             <div className="Assignment_Time">
-                                                {getTimeFromTimestamp(assignment.dueDate)}
+                                                {getTimeFromTimestamp(draft.dueDate)}
                                             </div>
-                                        </div>
+                                        </div> */}
                                         <div className="Assignment_Box d-flex flex-column justify-content-center p-1">
                                             <div className="Assignment_Img">
                                                 <img src="https://firebasestorage.googleapis.com/v0/b/edeasy-90583.appspot.com/o/assignments%2FWhatsApp%20Image%202021-10-17%20at%204.55.04%20AM.jpeg?alt=media&token=db78b70d-2b09-4cbb-b5ac-d47e2392bd31" alt="" />
                                                 <div className="Assignment_Name">
-                                                    {assignment.name}
+                                                    {draft.name}
                                                 </div>
                                             </div>
                                             <div className="Assignment_Desc">
-                                                {assignment.desc}
+                                                {draft.desc}
                                             </div>
                                         </div>
                                     </a>
@@ -124,7 +124,7 @@ const Assignments = ({classCode, adminEmail, isAssignmentCreated, setIsAssignmen
                 ) : ("")
             }
             <CreateAssignment 
-                setIsAssignmentCreated={setIsAssignmentCreated} 
+                setIsDraftCreated={setIsDraftCreated} 
                 isModalOpen={showCreate} 
                 toggleModal={toggleCreate} 
                 setShow={setShowCreate}
@@ -136,4 +136,4 @@ const Assignments = ({classCode, adminEmail, isAssignmentCreated, setIsAssignmen
     )
 }
 
-export default Assignments;
+export default Drafts;

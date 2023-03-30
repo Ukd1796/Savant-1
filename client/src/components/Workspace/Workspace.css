@@ -1,4 +1,4 @@
-.Classroom {
+.Workspace {
     margin-top: 40px;
     background-color: #F4F3F8 !important;
     min-height: 100vh;
@@ -8,7 +8,7 @@
     border-right: 1px solid #000000;
 }
 
-.Classroom_Desc div {
+.Workspace_Desc div {
     margin-top: 3px;
     margin-right: 5px;
     padding-right: 5px;
@@ -30,7 +30,7 @@
     background-color: #99C6FF;
 }
 
-.Classroom_Desc {
+.Workspace_Desc {
     font-size: 15px;
     font-family: 'inter', 'IBM Plex Sans' !important;
     font-weight: 600;
@@ -48,20 +48,20 @@
     font-size: 14px;
 }
 
-.Classroom .MuiSvgIcon-root {
+.Workspace .MuiSvgIcon-root {
     cursor: pointer;
 }
 
-.Classroom_Info {
+.Workspace_Info {
     box-shadow: 0px 1px 6px #d8ddfd;
 }
 
-.Classroom_Navtab {
+.Workspace_Navtab {
     padding: 0 !important;
     width: 100% !important;
 }
 
-.Classroom_Body {
+.Workspace_Body {
     width: 63% !important;
 }
 
@@ -93,7 +93,7 @@
     color: #373333;
 }
 
-.Classroom_Navtab div {
+.Workspace_Navtab div {
     font-size: 18px;
     font-weight: bold;
     color: #828282;
@@ -102,7 +102,7 @@
     cursor: pointer;
 }
 
-.Classroom_Navtab div.active{
+.Workspace_Navtab div.active{
     font-weight: bold;
     color: #0B223F;
     background-color: white;
@@ -343,7 +343,7 @@ label {
         font-size: 10px;
     }
  
-    .Classroom_Navtab div {
+    .Workspace_Navtab div {
         font-size: 15px;
     }
 
@@ -387,7 +387,7 @@ label {
         font-size: 14px !important;
     }
 
-    .Classroom_Body {
+    .Workspace_Body {
         width: 65% !important;
     }
 
@@ -417,7 +417,7 @@ label {
         display: none;
     }
 
-    .Classroom_Body {
+    .Workspace_Body {
         width: 100% !important;
     }
 
@@ -425,7 +425,7 @@ label {
         font-size: 20px;
     }
 
-    .Classroom_Desc {
+    .Workspace_Desc {
         font-size: 12px;
     }
 
@@ -443,11 +443,11 @@ label {
         font-size: 16px;
     }
 
-    .Classroom_Navtab div {
+    .Workspace_Navtab div {
         padding: 3px 10px;
     }
 
-    .Classroom_Navtab {
+    .Workspace_Navtab {
         width: 98% !important;
     }
 }

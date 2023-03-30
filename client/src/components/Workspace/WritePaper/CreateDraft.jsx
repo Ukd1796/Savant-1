@@ -11,13 +11,13 @@ import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { makeStyles } from "@material-ui/core/styles";
 import { Modal, ModalBody } from "reactstrap";
-import "./CreateAssignment.css";
+import "./CreateDraft.css";
 
-import db, { storage } from "../../firebase";
+import db, { storage } from "../../../firebase";
 import axios from "axios";
 
 import { useSelector } from "react-redux";
-import { selectUserData } from "../../reduxSlices/authSlice";
+import { selectUserData } from "../../../reduxSlices/authSlice";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,13 +60,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CreateAssignment = (props) => {
+const CreateDraft = (props) => {
   let TextArea = useRef(null);
   const classes = useStyles();
   const [values, setValues] = useState({
     name: "",
-    description: "",
-    dueDate: ""
   });
 
   const [loading, setLoading] = useState(false);
@@ -79,27 +77,22 @@ const CreateAssignment = (props) => {
   const submitFile = (e) => {
     e.preventDefault();
 
-    if (!fileInput) return;
 
     setLoading(true);
-    const fileName = new Date().getTime() + "-" + fileInput.fileInput.name;
+    const fileName = new Date().getTime();
     const uploadTask = storage
-      .ref(`assignments/${fileName}`)
-      .put(fileInput.fileInput);
+      .ref(`drafts/${fileName}`)
     uploadTask.on("state_changed", console.log, console.error, () => {
       storage
-        .ref("assignments")
+        .ref("drafts")
         .child(fileName)
         .getDownloadURL()
-        .then((firebaseURL) => {
+        .then(() => {
           return axios.post(
-            "http://localhost:5000/classes/createAssignment",
+            "http://localhost:5000/workspace/createDrafts",
             {
               classCode: props.classCode,
               name: values.name,
-              desc: values.description,
-              dueDate: new Date(values.dueDate).getTime(),
-              fileLink: firebaseURL,
               creatorEmail: userData.userEmail,
             },
             {
@@ -113,7 +106,7 @@ const CreateAssignment = (props) => {
           props.setShow(false);
           setLoading(false);
           console.log(props);
-          props.setIsAssignmentCreated(true);
+          props.setIsDraftCreated(true);
         })
         .catch((err) => {
           console.log(err);
@@ -150,8 +143,6 @@ const CreateAssignment = (props) => {
   const handleSubmit = () => {
     setValues({
       name: "",
-      description: "",
-      dueDate: "",
     });
     setFileInput(null);
   };
@@ -175,7 +166,7 @@ const CreateAssignment = (props) => {
                     style={{ color: "rgb(90,90,90)" }}
                     className="text-center pt-3 mb-4 fs-2"
                   >
-                    Create Assignment
+                    Create Draft
                   </h1>
                   <form onSubmit={submitFile}>
                     <FormControl
@@ -183,7 +174,7 @@ const CreateAssignment = (props) => {
                     >
                       <InputLabel htmlFor="name"></InputLabel>
                       <Input
-                        placeholder="Type Assignment name"
+                        placeholder="Name"
                         fullWidth
                         id="name"
                         type="text"
@@ -199,7 +190,7 @@ const CreateAssignment = (props) => {
                       />
                     </FormControl>
 
-                    <FormControl
+                    {/* <FormControl
                       className={clsx(classes.margin, classes.textField)}
                     >
                       <InputLabel htmlFor="description"></InputLabel>
@@ -240,9 +231,9 @@ const CreateAssignment = (props) => {
                         required
                         onChange={handleChange("dueDate")}
                       />
-                    </FormControl>
+                    </FormControl> */}
 
-                    <FormControl
+                    {/* <FormControl
                       className={clsx(classes.margin, classes.textField)}
                     >
                       <InputLabel htmlFor="file"></InputLabel>
@@ -262,12 +253,12 @@ const CreateAssignment = (props) => {
                           </InputAdornment>
                         }
                       />
-                    </FormControl>
-                    {pdfFileError && (
+                    </FormControl> */}
+                    {/* {pdfFileError && (
                       <div className="error-msg text-danger">
                         {pdfFileError}
                       </div>
-                    )}
+                    )} */}
                     {
                       loading ? (
                         <div className="d-flex justify-content-center mt-4">
@@ -304,4 +295,4 @@ const CreateAssignment = (props) => {
   );
 };
 
-export default CreateAssignment;
+export default CreateDraft;
