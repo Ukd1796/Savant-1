@@ -21,7 +21,7 @@ const Home = () => {
                 <h3>Team Need GPU</h3>
                 <h1><strong>Savant: All in One<br/> Research Assistant</strong></h1>
                 <p></p>
-                <h3>We help students and researchers by making the research<br/> process easier, streamlined, efficient,and organised.</h3>
+                <h3>We help students and researchers by making the research<br/> process easier, streamlined, efficient and organised.</h3>
                 <p></p><p></p>
                   {
                     (userData.token) ? 

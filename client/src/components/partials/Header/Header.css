@@ -1,5 +1,5 @@
 a {
-    color: rgb(255, 255, 255) !important;
+    color: white !important;
     text-decoration: none !important;
 }
 
@@ -12,11 +12,11 @@ a {
     display: flex !important;
     align-items: center !important;
 
-    color: #433939 !important;
+    color: #f6f3f3 !important;
 }
 
 .navbar {
-    /* background: rgba(196, 196, 196, 0.09) !important; */
+    /* background: rgba(9, 9, 9, 0.09) !important; */
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.12) !important;
     border-radius: 10px !important;
     position: fixed !important;
@@ -36,7 +36,7 @@ a {
     text-align: center !important;
     color: #FFFFFF;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    background: #1B559C;
+    background: #1b559c;
     border-radius: 22px;
     border: none !important;
 }
@@ -50,7 +50,7 @@ a {
     display: flex !important;
     align-items: center !important;
 
-    color: #9698A6 !important;
+    color: #edeef2 !important;
 }
 
 .navbar-toggler  {
@@ -64,7 +64,7 @@ a {
 .selected {
     font-style: normal;
     font-weight: bold !important;
-    color: #1B559C !important;
+    color: #ededed !important;
   }
 
 .comp-nav {

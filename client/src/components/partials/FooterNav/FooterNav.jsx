@@ -23,7 +23,7 @@ function FooterNav() {
             </div> */}
             <div className="col-6 d-flex justify-content-center">
               <h3>
-                <NavLink to="/classes" className="nav-link footer-nav-link" activeClassName="selected" >
+                <NavLink to="/workspace" className="nav-link footer-nav-link" activeClassName="selected" >
                   Dashboard
                 </NavLink>
               </h3>

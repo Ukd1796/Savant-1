@@ -31,27 +31,27 @@ const List = (props) => {
           let card = Card1;
           switch (index % 5) {
             case 0: {
-              backgroundStyle = { backgroundColor: "#E5F8F0", borderRadius: "12px" };
+              backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
               card = Card1;
             }
               break;
             case 1: {
-              backgroundStyle = { backgroundColor: "#FFF3DA", borderRadius: "12px" };
+              backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
               card = Card2;
             }
               break;
             case 2: {
-              backgroundStyle = { backgroundColor: "#E9E9FF", borderRadius: "12px" };
+              backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
               card = Card3;
             }
               break;
             case 3: {
-              backgroundStyle = { backgroundColor: "#FFE9E9", borderRadius: "12px" };
+              backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
               card = Card4;
             }
               break;
             case 4: {
-              backgroundStyle = { backgroundColor: "#FEE2FF", borderRadius: "12px" };
+              backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
               card = Card5;
             }
           }
@@ -82,31 +82,31 @@ const List = (props) => {
         (activeTab == "1" ? owned : enrolled).map((sub, index) => {
           let backgroundStyle = {};
           let card = Card1;
-          switch (index % 5) {
+          switch (index % 4) {
             case 0: {
-              backgroundStyle = { backgroundColor: "#E5F8F0", borderRadius: "12px" };
+              backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
               card = Card1;
             }
               break;
             case 1: {
-              backgroundStyle = { backgroundColor: "#FFF3DA", borderRadius: "12px" };
+              backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
               card = Card2;
             }
               break;
             case 2: {
-              backgroundStyle = { backgroundColor: "#E9E9FF", borderRadius: "12px" };
+              backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
               card = Card3;
             }
               break;
             case 3: {
-              backgroundStyle = { backgroundColor: "#FFE9E9", borderRadius: "12px" };
+              backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
               card = Card4;
             }
-              break;
-            case 4: {
-              backgroundStyle = { backgroundColor: "#FEE2FF", borderRadius: "12px" };
-              card = Card5;
-            }
+            //   break;
+            // case 4: {
+            //   backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
+            //   card = Card5;
+            // }
           }
           return (
             <div key={index} className="col-12 col-md-6 col-lg-4 d-flex justify-content-center card-width-mobile">
@@ -141,7 +141,7 @@ const List = (props) => {
             Workspaces
           </div>
 
-          <div className="row join-links pt-2 pb-2">
+          {/* <div className="row join-links pt-2 pb-2">
             <div className="row d-flex">
               <div className="d-flex justify-content-between Workspace_Navtab mt-3">
                 <div>
@@ -158,7 +158,7 @@ const List = (props) => {
             </div>
           </div>
           <CreateWorkspace isModalOpen={show} toggleModal={toggle} setShow={setShow} />
-          <JoinWorkspace isModalOpen={showJoin} toggleModal={toggleJoin} setShow={setShowJoin} />
+          <JoinWorkspace isModalOpen={showJoin} toggleModal={toggleJoin} setShow={setShowJoin} /> */}
 
 
           <div className="col-12">

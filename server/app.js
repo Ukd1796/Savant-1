@@ -36,7 +36,7 @@ app.use((err, req, res, next) => {
     res.status(status).json({message: message});
 })
 
-mongoose.connect('mongodb+srv://admin:987654321@cluster0.edmu2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', 
+mongoose.connect('mongodb+srv://ukdwiwedi1796:Cju8jPX9c1yvCSmE@cluster0.vakvxjl.mongodb.net/?retryWrites=true&w=majority', 
 { 
     useUnifiedTopology: true, 
     useNewUrlParser: true 

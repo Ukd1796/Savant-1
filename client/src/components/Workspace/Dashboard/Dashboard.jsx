@@ -72,10 +72,10 @@ const Dashboard = () => {
             <div className="row mx-0">
                 <SideDash setLoading={setLoading} owned={owned} enrolled={enrolled} />
               <div className="col-12 col-md-9 width-80 padding-sx-0 margin-sx-0 pos">
-                <div className="row mx-0 m-t-0 m-md-3">
+                <div className="row mx-0 m-t-0 m-md-1">
                   <Banner/>
                 </div>
-                <div className="row m-3 mx-0 mx-md-3">
+                <div className="row m-3 mx-0 mx-md-1">
                   <List setLoading={setLoading} owned={owned} enrolled={enrolled} />
                 </div>
               </div>

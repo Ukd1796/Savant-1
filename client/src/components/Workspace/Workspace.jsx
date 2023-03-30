@@ -44,6 +44,10 @@ const Workspace = () => {
     if (activeTab === "drafts") {
       history.replace('/workspace/' + classCode + '/drafts');
     } else if (activeTab === "collaborators") {
+      history.replace('/workspace/' + classCode + '/find');
+    } else if (activeTab === "collaborators") {
+      history.replace('/workspace/' + classCode + '/upload');
+    } else if (activeTab === "collaborators") {
       history.replace('/workspace/' + classCode + '/collaborators');
     }
   }, [activeTab])
@@ -191,7 +195,7 @@ const Workspace = () => {
                 </div>
               </div>
               <div className="row justify-content-between mt-3">
-                <div className="Workspace_Body m-0 p-0">
+                
                   {
 
                     activeTab === "drafts" ? (
@@ -203,74 +207,7 @@ const Workspace = () => {
                       />) :
                       activeTab === "collaborators" ? <Collaborators classCode={classCode} adminName={adminName} adminEmail={adminEmail} /> : null
                   }
-
-                </div>
-                <div className="Reminders">
-                  <div className="content-box py-3 px-2 px-md-4 py-md-3 mb-3">
-                    <h6 className="ms-1">Reminders</h6>
-                    {
-                      reminders.slice(0, (seeAll ? reminders.length : 3)).map((reminder, index) => {
-                        let style = {};
-                        if (index !== reminders.length - 1 && !(!seeAll && index == 2)) {
-                          style.borderBottom = "1px solid #ccc";
-                        }
-                        return (
-                          <a key={reminder._id} href={"/classes/" + reminder.classCode + "/Draft/" + reminder._id}>
-                            <div
-                              className="d-flex flex-column Reminder px-2 py-2 py-md-3"
-                              style={style}
-                            >
-                              <div className="Reminder_className">{reminder.className}</div>
-                              <div className="Reminder_name">{reminder.name}</div>
-                              <div className="Reminder_Desc">
-                                {getTimeFromTimestamp(reminder.dueDate)} -{" "}
-                                {getDateFromTimestamp(reminder.dueDate)}
-                              </div>
-                            </div>
-                          </a>
-                        );
-                      })
-                    }
-                    { 
-                      reminderLoading ? (
-                        <div className="d-flex justify-content-center mt-3">
-                          <CircularProgress size={30}/>
-                        </div>
-                      ) : 
-                      reminders.length > 3 ? (
-                        <div className="See_All d-flex justify-content-end">
-                          {
-                            seeAll ? (
-                              <div onClick={() => setSeeAll(false)}>
-                                See Less
-                              </div>
-                            ) : (
-                              <div onClick={() => setSeeAll(true)}>
-                                See All
-                              </div>
-                            )
-                          }
-                        </div>
-                      ) : reminders.length == 0 ? (
-                            <div className="ms-1 mt-2" style={{fontSize: "13px", color: "gray"}}>
-                              No work due!
-                            </div>
-                      ) : null
-                    }
-                  </div>
-     
-            {
-                    (adminName===storeData.userName) ? (
-                      <div className="d-flex justify-content-center">
-                        <Button outline color="primary" className="Button_Hover d-flex align-items-center py-2 px-3 fs-6" onClick={() => setShow(true)}>
-                          <AddRoundedIcon style={{fontSize: "28px", margin: "-2px 3px 0 0"}} />
-                          Create Draft
-                        </Button>
-                      </div>
-                    ) :(<></>)
-                  }
-
-                </div>
+                {/*  */}
               </div>
             </div>
           </div>

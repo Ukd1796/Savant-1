@@ -1,6 +1,6 @@
 .Workspace {
     margin-top: 40px;
-    background-color: #F4F3F8 !important;
+    background-color: #130636 !important;
     min-height: 100vh;
 }
 
@@ -27,7 +27,7 @@
     height: 60px;
     width: 6px;
     border-radius: 5px;
-    background-color: #99C6FF;
+    background-color: #04162d;
 }
 
 .Workspace_Desc {
@@ -96,7 +96,7 @@
 .Workspace_Navtab div {
     font-size: 18px;
     font-weight: bold;
-    color: #828282;
+    color: #fcf9f9;
     padding: 5px 18px;
     border-radius: 5px;
     cursor: pointer;

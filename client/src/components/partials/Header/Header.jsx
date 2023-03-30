@@ -68,7 +68,7 @@ const Header = () => {
       {
           showSidedrawer ? <Sidedrawer show={showSidedrawer} closeSidedrawer={closeShowSidedrawer} /> : null
       }
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container-fluid">
           <>
             <NavLink to="/" className="navbar-brand ms-5 fw-bold" href="#">SAVANT</NavLink>
