@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import "./Dashboard.css";
-import AddIcon from '@material-ui/icons/Add';
-import CreateWorkspace from '../CreateWorkspace';
-import JoinWorkspace from '../JoinWorkspace';
 import Card1 from "../../../assets/card1.svg";
 import Card2 from "../../../assets/card2.svg";
 import Card3 from "../../../assets/card3.svg";

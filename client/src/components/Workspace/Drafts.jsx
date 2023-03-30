@@ -10,7 +10,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import CreateDraft from "./WritePaper/CreateDraft";
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import { Button } from 'reactstrap';
-
+import "./Drafts.css";
 
 const Drafts = ({ classCode, adminEmail, isDraftCreated, setIsDraftCreated }) => {
     const storeData = useSelector(selectUserData);
@@ -49,7 +49,7 @@ const Drafts = ({ classCode, adminEmail, isDraftCreated, setIsDraftCreated }) =>
     }, [isDraftCreated]);
 
     return (
-        <div className="Assignments content-box py-3 px-4 pt-4">
+        <div className=" row Assignments content-box py-3 px-4 pt-4">
             <div className="d-flex justify-content-center">
                 <Button outline color="primary" className="Button_Hover d-flex align-items-center py-2 px-3 fs-6" onClick={() => setShowCreate(true)}>
                     <AddRoundedIcon style={{ fontSize: "28px", margin: "-2px 3px 0 0" }} />
@@ -62,52 +62,72 @@ const Drafts = ({ classCode, adminEmail, isDraftCreated, setIsDraftCreated }) =>
                         <CircularProgress size={50} className="display-block" />
                     </div>
                 ) : drafts.length !== 0 ? (
-                    <>
-                        {
 
-                            drafts.map(draft => {
-                                return (
-                                    <div key={draft._id}>
-                                        <a href={(storeData.userEmail === adminEmail) ?
-                                            "/workspace/" + classCode + "/drafts/" + draft._id + "/admin" :
-                                            "/workspace/" + classCode + "/drafts/" + draft._id
-                                        } >
+                    (drafts.map((draft, index) => {
 
-                                            <div className="Assignment_Box d-flex flex-column justify-content-center p-1">
-                                                <div className="Assignment_Img">
-                                                    <img src="https://firebasestorage.googleapis.com/v0/b/edeasy-90583.appspot.com/o/assignments%2FWhatsApp%20Image%202021-10-17%20at%204.55.04%20AM.jpeg?alt=media&token=db78b70d-2b09-4cbb-b5ac-d47e2392bd31" alt="" />
-                                                    <div className="Assignment_Name">
-                                                        {draft.name}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-
-                                    </div>
-                                )
-                            })
+                        let backgroundStyle = {};
+                        {/* let card = Card1; */}
+                        switch (index % 5) {
+                            case 0: {
+                                backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
+                                {/* card = Card1; */}
+                            }
+                                break;
+                            case 1: {
+                                backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
+                                {/* card = Card2; */}
+                            }
+                                break;
+                            case 2: {
+                                backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
+                                {/* card = Card3; */}
+                            }
+                                break;
+                            case 3: {
+                                backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
+                                {/* card = Card4; */}
+                            }
+                                break;
+                            case 4: {
+                                backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
+                                {/* card = Card5; */}
+                            }
                         }
-                    </>
-                ) : <div>
+
+                        return (
+                            <div key={draft._id} className="col-12 col-md-6 col-lg-4 d-flex justify-content-center pt-4">
+                                <a href={
+                                    "/workspace/" + classCode + "/drafts/" + draft._id
+                                } style={{ maxWidth: "100%", minWidth: "100%" }} >
+                                    <div className="d-none d-md-flex card class-card card-width mx-auto" style={backgroundStyle}>
+                                        <div className="card-body m-3 mx-md-4 rounded-3" style={{ backgroundColor: "#fff" }}>
+                                            <h5 className="card-title heading-3 text-start mb-0">{draft.name}</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        )
+                    })
+                    )) : <div>
                     <div>No drafts created yet.</div>
 
                 </div>
 
-            }                 
-                    <div className="floating-btn d-block d-md-none">
-                        <Dropdown direction="up" isOpen={dropdownOpen} toggle={toggle}>
-                            <DropdownToggle nav>
-                                <Fab style={{ color: 'white', backgroundColor: "#1B559C" }}>
-                                    <AddIcon style={{ fontSize: "28px" }} />
-                                </Fab>
-                            </DropdownToggle>
-                            <DropdownMenu className="bg-transparent" style={{ border: "none" }}>
-                                <button className="join-create-btn" onClick={() => setShowCreate(true)}>
-                                    Create Draft
-                                </button>
-                            </DropdownMenu>
-                        </Dropdown>
-                    </div>
+            }
+            <div className="floating-btn d-block d-md-none">
+                <Dropdown direction="up" isOpen={dropdownOpen} toggle={toggle}>
+                    <DropdownToggle nav>
+                        <Fab style={{ color: 'white', backgroundColor: "#1B559C" }}>
+                            <AddIcon style={{ fontSize: "28px" }} />
+                        </Fab>
+                    </DropdownToggle>
+                    <DropdownMenu className="bg-transparent" style={{ border: "none" }}>
+                        <button className="join-create-btn" onClick={() => setShowCreate(true)}>
+                            Create Draft
+                        </button>
+                    </DropdownMenu>
+                </Dropdown>
+            </div>
             <CreateDraft
                 setIsDraftCreated={setIsDraftCreated}
                 isModalOpen={showCreate}
