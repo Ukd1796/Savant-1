@@ -1,5 +1,5 @@
 .landing {
-  background-color: #060127;
+  background-color: #fff;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -38,12 +38,7 @@ h1{
   font-weight: bold;
   font-size: 36px;
   line-height: 43px;
-  color: #f7f7f7;
-}
-
-h3{
-  font-size: 16px;
-  color: #b9b5b5;
+  color: #1B559C;
 }
 
 #hero .btn-get-started {
@@ -66,7 +61,7 @@ a {
 }
 
 .Footer {
-  background-color: #09032f;
+  background-color: #F6F6F6;
   padding: 10px 30px;
   position: fixed;
   bottom: 0 !important;

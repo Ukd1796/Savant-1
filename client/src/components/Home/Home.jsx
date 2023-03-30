@@ -25,7 +25,7 @@ const Home = () => {
                 <p></p><p></p>
                   {
                     (userData.token) ? 
-                      (<Link to="classes" className="btn-get-started scrollto">Start Researching</Link>) : 
+                      (<Link to="workspace" className="btn-get-started scrollto">Start Researching</Link>) : 
                       (<button className="btn-get-started scrollto" onClick={() => setShow(true)}>Start Researching</button>)
                   }
               </div>

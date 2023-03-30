@@ -12,7 +12,7 @@ const Collaborators = ({adminName, adminEmail, classCode}) => {
 
     useEffect(() => {
         setLoading(true);
-        axios.post("http://localhost:5000/classes/getCollaborators", {
+        axios.post("http://localhost:5000/workspace/getCollaborators", {
             classCode: classCode
         },
         {
