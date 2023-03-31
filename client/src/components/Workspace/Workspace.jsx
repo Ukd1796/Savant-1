@@ -17,6 +17,7 @@ import axios from 'axios';
 import { selectUserData } from '../../reduxSlices/authSlice';
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
+import FindPaper from "./FindPaper/FindPaper";
 
 const Workspace = () => {
   const storeData = useSelector(selectUserData);
@@ -201,7 +202,9 @@ const Workspace = () => {
                       />) :
                       activeTab === "collaborators" ? <Collaborators classCode={classCode} adminName={adminName} adminEmail={adminEmail} /> : null
                   }
-                {/*  */}
+                {activeTab === "find" ? (
+                      <FindPaper />) :
+                      activeTab === "collaborators" ? <Collaborators classCode={classCode} adminName={adminName} adminEmail={adminEmail} /> : null}
               </div>
             </div>
           </div>
