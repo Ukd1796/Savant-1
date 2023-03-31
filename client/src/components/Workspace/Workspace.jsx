@@ -26,9 +26,6 @@ const Workspace = () => {
   const [className, setClassName] = useState();
   const [adminName, setAdminName] = useState();
   const [adminEmail, setAdminEmail] = useState();
-  const [classYear, setClassYear] = useState();
-  const [subject, setSubject] = useState();
-  const [meetLink, setMeetLink] = useState();
   const [reminders, setReminders] = useState([]);
   const [seeAll, setSeeAll] = useState(false);
   const [activeTab, setActiveTab] = useState(useParams().tab);

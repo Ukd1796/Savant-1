@@ -18,12 +18,16 @@ const TOOLBAR_OPTIONS = [
 ]
 
 export default function TextEditor() {
-  const { id: documentId } = useParams()
+
+  const documentId = useParams().draftId;
+  console.log(documentId);
   const [socket, setSocket] = useState()
   const [quill, setQuill] = useState()
 
+
   useEffect(() => {
-    const s = io("http://localhost:5000/workspace/getDraft")
+    const s = io("http://localhost:3001",{
+    })
     setSocket(s)
 
     return () => {

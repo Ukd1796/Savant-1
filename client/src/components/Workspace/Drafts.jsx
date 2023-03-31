@@ -11,8 +11,9 @@ import CreateDraft from "./WritePaper/CreateDraft";
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import { Button } from 'reactstrap';
 import "./Drafts.css";
+import { Link ,useParams} from 'react-router-dom';
 
-const Drafts = ({ classCode, adminEmail, isDraftCreated, setIsDraftCreated }) => {
+const Drafts = ({ classCode, adminEmail, isDraftCreated, setIsDraftCreated,draftId }) => {
     const storeData = useSelector(selectUserData);
     const [show, setShow] = useState(false);
     const [drafts, setDrafts] = useState([]);
@@ -47,6 +48,8 @@ const Drafts = ({ classCode, adminEmail, isDraftCreated, setIsDraftCreated }) =>
         }
         setIsDraftCreated(false);
     }, [isDraftCreated]);
+
+ 
 
     return (
         <div className=" row Assignments content-box py-3 px-4 pt-4">
@@ -96,7 +99,7 @@ const Drafts = ({ classCode, adminEmail, isDraftCreated, setIsDraftCreated }) =>
 
                         return (
                             <div key={draft._id} className="col-12 col-md-6 col-lg-4 d-flex justify-content-center pt-4">
-                                <a href={
+                                <Link to={
                                     "/workspace/" + classCode + "/drafts/" + draft._id
                                 } style={{ maxWidth: "100%", minWidth: "100%" }} >
                                     <div className="d-none d-md-flex card class-card card-width mx-auto" style={backgroundStyle}>
@@ -104,7 +107,7 @@ const Drafts = ({ classCode, adminEmail, isDraftCreated, setIsDraftCreated }) =>
                                             <h5 className="card-title heading-3 text-start mb-0">{draft.name}</h5>
                                         </div>
                                     </div>
-                                </a>
+                                </Link>
                             </div>
                         )
                     })

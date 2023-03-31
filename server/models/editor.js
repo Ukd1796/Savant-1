@@ -2,10 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const EditorSchema = new Schema({
-        data: {
-            type: Object,
-            required:true
-        }
+    _id: String,
+    data: Object,
     }
 )
 

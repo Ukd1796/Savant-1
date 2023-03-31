@@ -35,7 +35,7 @@ const App = () => {
                 <Route path='/workspace/reminders' component={Reminders}/>
                 <Route path='/workspace/:id' component={Workspace} exact/>
                 <Route path='/workspace/:id/:tab' component={Workspace} exact/>
-                <Route path='/workspace/:id/draft/:draftId' component={TextEditor} exact/>
+                <Route path='/workspace/:id/drafts/:draftId' component={TextEditor} exact/>
                 <Redirect to ="/" />
               </Switch> 
             ) : (
