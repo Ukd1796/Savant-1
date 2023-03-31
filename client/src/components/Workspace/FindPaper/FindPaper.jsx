@@ -1,42 +1,20 @@
-import React, {useEffect} from 'react'
+import React from "react";
 import './FindPaper.css';
-import FindInPageIcon from '@mui/icons-material/FindInPage';
-const FindPaper = () => {
+import { FaSearch } from "react-icons/fa";
 
-    useEffect(() => {
-        const script = document.createElement('script');
-      
-        script.src = "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js";
-        script.async = true;
-      
-        document.body.appendChild(script);
-      
-        return () => {
-          document.body.removeChild(script);
-        }
-    }, []);
-    
+const FindPaper = () => {
   return (
-      <>
-      <div className="container" data-container>
-        
-        <form className="form">
-          <input
-            className="form__input"
-            type="text"
-            placeholder="What are you finding today?"
-            autocomplete="off"
-            data-form-input
-          />
-          <button className="form__btn" data-form-button>
-            {/* <ion-icon name="search-outline"></ion-icon> */}
-          </button>
-        </form>
+    <div className="row m-0 justify-content-center">
+      <div className="Workspace_Info col-11 col-md-10 col-lg-9 col-xl-11 d-flex justify-content-between content-box mt-4 py-2 px-2 py-sm-3 px-sm-4">
+          <div className="input-wrapper">
+            <FaSearch id="search-icon" />
+            <input
+              placeholder="Type to search..."
+            />
+          </div>
       </div>
-      
-          
-      </>
+    </div>
   )
 }
 
-export default FindPaper
+export default FindPaper;

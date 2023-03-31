@@ -8,8 +8,6 @@ import { getDateFromTimestamp, getTimeFromTimestamp } from "../../utilities";
 import Drafts from './Drafts';
 import Collaborators from "./Collaborators";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-import VideocamIcon from "@material-ui/icons/Videocam";
-import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import { Button } from 'reactstrap';
 import CreateDraft from "./WritePaper/CreateDraft";
 import { useSelector } from 'react-redux';
@@ -17,8 +15,7 @@ import axios from 'axios';
 import { selectUserData } from '../../reduxSlices/authSlice';
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
-// import FindPaper from "./FindPaper/FindPaper";
-
+import FindPaper from "./FindPaper/FindPaper";
 const Workspace = () => {
   const storeData = useSelector(selectUserData);
   const history = useHistory();
@@ -202,9 +199,9 @@ const Workspace = () => {
                       />) :
                       activeTab === "collaborators" ? <Collaborators classCode={classCode} adminName={adminName} adminEmail={adminEmail} /> : null
                   }
-                {/* {activeTab === "find" ? (
+                {activeTab === "find" ? (
                       <FindPaper />) :
-                      activeTab === "collaborators" ? <Collaborators classCode={classCode} adminName={adminName} adminEmail={adminEmail} /> : null} */}
+                      activeTab === "collaborators" ? <Collaborators classCode={classCode} adminName={adminName} adminEmail={adminEmail} /> : null}
               </div>
             </div>
           </div>
