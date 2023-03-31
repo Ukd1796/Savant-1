@@ -3,6 +3,7 @@ import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import { io } from "socket.io-client";
 import { useParams } from "react-router-dom";
+import './TextEditor.css'
 
 const SAVE_INTERVAL_MS = 2000
 const TOOLBAR_OPTIONS = [
