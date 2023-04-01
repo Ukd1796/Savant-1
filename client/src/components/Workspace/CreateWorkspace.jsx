@@ -133,7 +133,7 @@ const CreateWorkspace = (props) => {
                                 <InputLabel htmlFor="description"></InputLabel>
                                 <Input
                                     style={{marginBottom:"10px"}}
-                                    placeholder="Enter Class Description (Max 20 characters)"
+                                    placeholder="Enter Description (Max 20 characters)"
                                     fullWidth
                                     id="description"
                                     type="textarea"

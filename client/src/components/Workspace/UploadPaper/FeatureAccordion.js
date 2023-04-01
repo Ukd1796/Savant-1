@@ -8,7 +8,7 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 export default function FeatureAccordian() {
   return (
     <div style={{}}>
-      <Accordion style={{ width: 490 }}>
+      <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
@@ -56,7 +56,27 @@ export default function FeatureAccordian() {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>Greetings of the day :)</Typography>
+          <Typography>
+            <label>
+              Text input: <input name="myInput" />
+             
+            </label>
+            
+            <button type="submit" className="btn btn-success submitBtns ">Submit</button>
+            <hr />
+            <label>
+        Pick a fruit:
+        <select name="selectedFruit">
+          <option value="apple">Apple</option>
+          <option value="banana">Banana</option>
+          <option value="orange">Orange</option>
+        </select>
+      </label>
+      <hr />
+            <label>
+              <textarea name="postContent" rows={4} cols={40} />
+            </label>
+          </Typography>
         </AccordionDetails>
       </Accordion>
     </div>
