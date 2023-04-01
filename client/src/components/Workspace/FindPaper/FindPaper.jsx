@@ -29,7 +29,7 @@ const handleChange = (prop) => (event) => {
         // console.log(response.data); // this will print xml data structure
         let parser = new xml2js.Parser();
         parser.parseString(response.data,function(err, result) {
-          console.log(result);
+          console.log(result.feed.entry[0]);
        })
     })
     .catch(function (error) {
