@@ -3,6 +3,7 @@
   align-items: flex-start;
   margin-left: 0% !important;
   flex-direction: column;
+  margin: 0% !important;
 }
 
 .submitBtn{
@@ -13,7 +14,7 @@
 
 .Upload_Info{
 margin-top: 0% !important;
- width:7.5in;
+width: 100%;
 }
 
 .viewerPdf{
@@ -35,8 +36,8 @@ margin-top: 0% !important;
 =======
   /* margin-top: 0% !important; */
  bottom:7rem;
- width:7.5in;
- max-height:9in;
+ width: 100%;
+ height: 7in;
 }
 .pdfViewAdd{
  overflow-y: scroll;
@@ -44,6 +45,15 @@ margin-top: 0% !important;
 
 .accordion-container{
  margin-top: 0% !important;
+<<<<<<< HEAD
  max-height:9in;
 >>>>>>> 6bb8df598a8782113d700c52e695355c03fc40d3
+=======
+ height: 9in;
+ width: 40%;
+}
+
+.submitBtn {
+  display: flex;
+>>>>>>> af731a4b601ca3e1b9eef5b4e8ea2c209d38c934
 }
