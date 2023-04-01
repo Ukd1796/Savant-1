@@ -1,5 +1,5 @@
 a {
-    color: white !important;
+    /* color: #00000000 !important; */
     text-decoration: none !important;
 }
 
@@ -11,33 +11,34 @@ a {
     line-height: 32px !important;
     display: flex !important;
     align-items: center !important;
-
-    color: #f6f3f3 !important;
+    color: #000000 !important;
 }
 
 .navbar {
-    /* background: rgba(9, 9, 9, 0.09) !important; */
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.12) !important;
-    border-radius: 10px !important;
+    background: #bad7f9 !important;
+    /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.12) !important; */
+    border-radius: 0px !important;
     position: fixed !important;
     top: 0;
     width: 100% !important;
+    height: 75px;
     z-index: 5;
 }
 
 .login-btn {
-    width: 78px;
+    width: 100px;
     height: 42px;
-    font-family: Tajawal;
+    font-family: "Raleway", sans-serif;
     font-style: normal;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 15px;
     line-height: 24px;
     text-align: center !important;
-    color: #FFFFFF;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    background: #1b559c;
-    border-radius: 22px;
+    text-color: #0000;
+    /* text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+    margin-top: 10px;
+    background: #E9F3FF;
+    border-radius: 20px;
     border: none !important;
 }
 
@@ -49,23 +50,28 @@ a {
     line-height: 24px !important;
     display: flex !important;
     align-items: center !important;
-
-    color: #edeef2 !important;
+    color: #0000 !important;
 }
 
-.navbar-toggler  {
-    border : none !important;
+.shru {
+    margin-top: 15px;
+    margin-left: 15px;
 }
+
+.navbar-toggler {
+    border: none !important;
+}
+
 .navbar-toggler .MuiSvgIcon-root {
-    border : none !important;
+    border: none !important;
     font-size: 24px !important;
 }
 
 .selected {
     font-style: normal;
     font-weight: bold !important;
-    color: #ededed !important;
-  }
+    color: #0000 !important;
+}
 
 .comp-nav {
     font-size: 16px;
@@ -76,4 +82,13 @@ a {
     font-size: 18px !important;
     font-weight: 700;
     color: rgb(90, 90, 90) !important;
+}
+
+.ninja {
+    max-width: 200px;
+    max-height: 300px;
+}
+
+.nava {
+    text-color: #00000000 !important;
 }

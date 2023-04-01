@@ -29,7 +29,7 @@ const FindPaper = () => {
             data-form-input
           />
           <button className="form__btn" data-form-button>
-            {/* <ion-icon name="search-outline"></ion-icon> */}
+            <ion-icon name="search-outline"></ion-icon>
           </button>
         </form>
       </div>

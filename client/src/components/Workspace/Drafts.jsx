@@ -12,6 +12,10 @@ import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import { Button } from 'reactstrap';
 import "./Drafts.css";
 import { Link ,useParams} from 'react-router-dom';
+import Card1 from "../../assets/card1.svg";
+import Card2 from "../../assets/card2.svg";
+import Card3 from "../../assets/card3.svg";
+import Card4 from "../../assets/card4.svg";
 
 const Drafts = ({ classCode, adminEmail, isDraftCreated, setIsDraftCreated,draftId }) => {
     const storeData = useSelector(selectUserData);
@@ -69,33 +73,29 @@ const Drafts = ({ classCode, adminEmail, isDraftCreated, setIsDraftCreated,draft
                     (drafts.map((draft, index) => {
 
                         let backgroundStyle = {};
-                        {/* let card = Card1; */}
-                        switch (index % 5) {
+                        let card = Card1;
+                        switch (index % 4) {
                             case 0: {
-                                backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
-                                {/* card = Card1; */}
+                              backgroundStyle = { backgroundColor: "#E9F3FF", borderRadius: "12px" };
+                              card = Card1;
                             }
-                                break;
+                              break;
                             case 1: {
-                                backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
-                                {/* card = Card2; */}
+                              backgroundStyle = { backgroundColor: "#E9F3FF", borderRadius: "12px" };
+                              card = Card2;
                             }
-                                break;
+                              break;
                             case 2: {
-                                backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
-                                {/* card = Card3; */}
+                              backgroundStyle = { backgroundColor: "#E9F3FF", borderRadius: "12px" };
+                              card = Card3;
                             }
-                                break;
+                              break;
                             case 3: {
-                                backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
-                                {/* card = Card4; */}
+                              backgroundStyle = { backgroundColor: "#E9F3FF", borderRadius: "12px" };
+                              card = Card4;
                             }
-                                break;
-                            case 4: {
-                                backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
-                                {/* card = Card5; */}
-                            }
-                        }
+                              
+                          }
 
                         return (
                             <div key={draft._id} className="col-12 col-md-6 col-lg-4 d-flex justify-content-center pt-4">
@@ -104,8 +104,11 @@ const Drafts = ({ classCode, adminEmail, isDraftCreated, setIsDraftCreated,draft
                                 } style={{ maxWidth: "100%", minWidth: "100%" }} >
                                     <div className="d-none d-md-flex card class-card card-width mx-auto" style={backgroundStyle}>
                                         <div className="card-body m-3 mx-md-4 rounded-3" style={{ backgroundColor: "#fff" }}>
+                                        <div className="col-4 d-flex justify-content-center">
+                                            <img src={card} className="img-fluid rounded-start px-2" width="100%" />
                                             <h5 className="card-title heading-3 text-start mb-0">{draft.name}</h5>
                                         </div>
+                                    </div>
                                     </div>
                                 </Link>
                             </div>
@@ -120,7 +123,7 @@ const Drafts = ({ classCode, adminEmail, isDraftCreated, setIsDraftCreated,draft
             <div className="floating-btn d-block d-md-none">
                 <Dropdown direction="up" isOpen={dropdownOpen} toggle={toggle}>
                     <DropdownToggle nav>
-                        <Fab style={{ color: 'white', backgroundColor: "#1B559C" }}>
+                        <Fab style={{ color: 'white', backgroundColor: "#bad7f9" }}>
                             <AddIcon style={{ fontSize: "28px" }} />
                         </Fab>
                     </DropdownToggle>
