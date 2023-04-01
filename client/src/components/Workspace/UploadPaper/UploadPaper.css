@@ -1,15 +1,23 @@
+.Upload_paper{
+  width:7.5in;
+  align-items: flex-start;
+  margin-left: 0% !important;
+  flex-direction: column;
+}
+
 .submitBtn{
-   position:relative;
-   bottom:3.5rem;
-   left:25rem;
+  position:relative;
+  bottom:3.5rem;
+  left:35rem;
 }
 
 .Upload_Info{
-  position: relative;
-  right:25rem;
+margin-top: 0% !important;
+ width:7.5in;
 }
 
 .viewerPdf{
+<<<<<<< HEAD
 
   position:relative;
   left:50%;
@@ -24,4 +32,18 @@
 .accordion-container{
   position: relative;
     bottom: 240px;
+=======
+  /* margin-top: 0% !important; */
+ bottom:7rem;
+ width:7.5in;
+ max-height:9in;
+}
+.pdfViewAdd{
+ overflow-y: scroll;
+}
+
+.accordion-container{
+ margin-top: 0% !important;
+ max-height:9in;
+>>>>>>> 6bb8df598a8782113d700c52e695355c03fc40d3
 }

@@ -65,6 +65,7 @@ h3 {
     /* display: inline-block; */
     padding: 10px 22px;
     border-radius: 30px;
+    border-color: #009cea;
     transition: 0.5s;
     text-color: black !important;
     background: #bad7f9;
