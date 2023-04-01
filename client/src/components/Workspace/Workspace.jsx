@@ -179,33 +179,27 @@ const Workspace = () => {
                   >
                     Upload Papers
                   </div>
-                  {/* <div
-                    onClick={() => setActiveTab("collaborators")}
-                    className={activeTab === "collaborators" ? "active" : ""}
-                  >
-                    Collaborators
-                  </div> */}
                 </div>
               </div>
               <div className="row justify-content-between mt-3">
-                
-                  {
 
-                    activeTab === "drafts" ? (
-                      <Drafts
-                        setIsDraftCreated={setIsDraftCreated}
-                        isDraftCreated={isDraftCreated}
-                        classCode={classCode}
-                        adminEmail={adminEmail}
-                      />) :
-                      activeTab === "collaborators" ? <Collaborators classCode={classCode} adminName={adminName} adminEmail={adminEmail} /> : null
-                  }
+                {
+
+                  activeTab === "drafts" ? (
+                    <Drafts
+                      setIsDraftCreated={setIsDraftCreated}
+                      isDraftCreated={isDraftCreated}
+                      classCode={classCode}
+                      adminEmail={adminEmail}
+                    />) :
+                    activeTab === "collaborators" ? <Collaborators classCode={classCode} adminName={adminName} adminEmail={adminEmail} /> : null
+                }
                 {activeTab === "find" ? (
-                      <FindPaper />) :
-                      activeTab === "collaborators" ? <Collaborators classCode={classCode} adminName={adminName} adminEmail={adminEmail} /> : null}
-                      {activeTab === "upload" ? (
-                      <UploadPaper />) :
-                      activeTab === "collaborators" ? <Collaborators classCode={classCode} adminName={adminName} adminEmail={adminEmail} /> : null}
+                  <FindPaper />) :
+                  activeTab === "collaborators" ? <Collaborators classCode={classCode} adminName={adminName} adminEmail={adminEmail} /> : null}
+                {activeTab === "upload" ? (
+                  <UploadPaper />) :
+                  activeTab === "collaborators" ? <Collaborators classCode={classCode} adminName={adminName} adminEmail={adminEmail} /> : null}
               </div>
             </div>
           </div>

@@ -41,8 +41,8 @@ const WritePaper = () => {
         <MobileHeader />
       </div>
 
-      <div className="WritePaper_Body col-12 col-md-10 col-lg-9 col-xl-12 d-flex mt-4 px-2 px-sm-4">
-        <div className="WritePaper_Nav col-5 col-md-3 col-lg-3 col-xl-5 d-flex content-box mt-4 py-2 px-4 py-sm-3 px-sm-4">
+      <div className="WritePaper_Body col-12 col-md-10 col-lg-9 col-xl-12 d-flex flex-row mt-4 px-2 px-sm-4">
+        <div className="WritePaper_Nav col-5 col-md-3 col-lg-3 col-xl-5 p-2 content-box mt-4 py-2 px-4 py-sm-3 px-sm-4">
           <div className="col-12 col-md-10 col-lg-9 col-xl-12">
               <div className="d-flex justify-content-between WritePaper_Navtab mt-4">
                 <div
@@ -73,7 +73,7 @@ const WritePaper = () => {
             </div>
           </div>
         </div>
-        <div className="WritePaper_info col-7 col-md-5 col-lg-4 col-xl-7 d-flex justify-content-between content-box mt-4 py-2 px-2 py-sm-3 px-sm-4">
+        <div className="WritePaper_info col-7 col-md-5 col-lg-4 col-xl-7 p-2 justify-content-between content-box mt-4 py-2 px-2 py-sm-3 px-sm-4">
           <div className="Editor col-12 col-md-10 col-lg-9 col-xl-12">
             <TextEditor />
           </div>
