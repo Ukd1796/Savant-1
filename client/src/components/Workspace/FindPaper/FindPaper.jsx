@@ -2,6 +2,7 @@ import { useState } from 'react';
 import React from "react";
 import './FindPaper.css';
 import axios from 'axios';
+import xml2js from 'xml2js';
 
 
 const FindPaper = () => {
@@ -20,16 +21,21 @@ const handleChange = (prop) => (event) => {
       console.log(values.keyword);
       axios.get(`http://export.arxiv.org/api/query?search_query=all:${values.keyword}&start=0&max_results=5`)
     .then(function (response) {
-        console.log(response); // this will print xml data structure
+        // console.log(response.data); // this will print xml data structure
+        let parser = new xml2js.Parser();
+        parser.parseString(response.data,function(err, result) {
+          console.log(result);
+       })
     })
     .catch(function (error) {
         console.log(error);
     })
     .then(function () {
-        console.log("hello")
+
+      
+        
     });  
     setLoading(true);
-    console.log("ujjwal")
   }
 
   return (
