@@ -14,7 +14,8 @@
 }
 
 .WritePaper_Nav {
-    padding: 0 !important;
+    /* padding: 0 !important; */
+    margin:1rem;
     box-shadow: 0px 1px 6px #d8ddfd;
 }
 
@@ -24,5 +25,5 @@
 
 
 .Workspace_Body {
-    width: 63% !important;
+    width: 55% !important;
 }

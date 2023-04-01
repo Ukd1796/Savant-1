@@ -3,6 +3,11 @@ import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 import IconButton from '@material-ui/core/IconButton';
+// import { 
+//   NavLogo, 
+//   NavIcon, 
+// } from './Navbar.elements'
+import Logo from '../../../assets/LG3.png'
 
 import Sidedrawer from '../Sidedrawer/Sidedrawer';
 import LoginModal from '../LoginModal/LoginModal';
@@ -59,7 +64,7 @@ const Header = () => {
     }
     else {
       return (
-        <li className="nav-item mx-3"><button className="login-btn" onClick={() => setShow(true)}>Login</button></li>
+        <li className="nav-item mx-3"><button className="login-btn" onClick={() => setShow(true)}>LOGIN</button></li>
       );
     }
   }
@@ -71,7 +76,7 @@ const Header = () => {
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container-fluid">
           <>
-            <NavLink to="/" className="navbar-brand ms-5 fw-bold" href="#">SAVANT</NavLink>
+            <img src={Logo} className="ninja ms-5 fw-bold" href="#" alt="" />
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" 
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
             aria-expanded="false" aria-label="Toggle navigation">
@@ -84,7 +89,7 @@ const Header = () => {
                 {
                   (token) ? (
                     <li className="nav-item mx-3">
-                      <NavLink to="/workspace" className="nav-link" activeClassName="selected" exact>Dashboard</NavLink>
+                      <NavLink to="/workspace" style={{ color: 'black' }} activeClassName="selected" exact>Dashboard</NavLink>
                     </li>
                   ) : ""
                 }

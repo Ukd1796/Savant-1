@@ -1,6 +1,6 @@
 .Workspace {
     margin-top: 40px;
-    background-color: #130636 !important;
+    background-color: #F3FAFF !important;
     min-height: 100vh;
 }
 
@@ -100,13 +100,13 @@
 .Workspace_Navtab div {
     font-size: 18px;
     font-weight: bold;
-    color: #fcf9f9;
+    color: #000000;
     padding: 5px 18px;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.Workspace_Navtab div.active{
+.Workspace_Navtab div.active {
     font-weight: bold;
     color: #0B223F;
     background-color: white;
@@ -119,10 +119,11 @@
     cursor: pointer;
 }
 
+
 /* ========== DISCUSSION SECTION ========== */
 
 .SendButton:hover {
-    color: #1B559C !important;
+    color: #bad7f9 !important;
     font-size: large;
 }
 
@@ -225,6 +226,7 @@
     margin-top: 10px;
 }
 
+
 /* ========== ASSIGNMENTS SECTION ========== */
 
 .Assignment_Desc {
@@ -235,7 +237,8 @@
     padding: 0 3px;
 }
 
-.Assignment_Date, .Assignment_Time {
+.Assignment_Date,
+.Assignment_Time {
     font-size: 16px;
     font-weight: bold;
     font-family: Roboto, 'Inter';
@@ -243,10 +246,10 @@
 }
 
 .Avatar_Container .MuiAvatar-root {
-    background-color: #1B559C !important;
+    background-color: #bad7f9 !important;
 }
 
-.Avatar_Small .MuiAvatar-root{
+.Avatar_Small .MuiAvatar-root {
     font-size: 17px !important;
     height: 35px;
     width: 35px;
@@ -286,44 +289,43 @@
 }
 
 .grow-wrap {
-  /* easy way to plop the elements on top of each other and have them both sized based on the tallest one's height */
-  display: grid;
+    /* easy way to plop the elements on top of each other and have them both sized based on the tallest one's height */
+    display: grid;
 }
+
 .grow-wrap::after {
-  /* Note the weird space! Needed to preventy jumpy behavior */
-  content: attr(data-replicated-value) " ";
-
-  /* This is how textarea text behaves */
-  white-space: pre-wrap;
-
-  /* Hidden from view, clicks, and screen readers */
-  visibility: hidden;
+    /* Note the weird space! Needed to preventy jumpy behavior */
+    content: attr(data-replicated-value) " ";
+    /* This is how textarea text behaves */
+    white-space: pre-wrap;
+    /* Hidden from view, clicks, and screen readers */
+    visibility: hidden;
 }
-.grow-wrap > textarea {
-  /* You could leave this, but after a user resizes, then it ruins the auto sizing */
-  resize: none;
 
-  /* Firefox shows scrollbar on growth, you can hide like this. */
-  overflow: hidden;
+.grow-wrap>textarea {
+    /* You could leave this, but after a user resizes, then it ruins the auto sizing */
+    resize: none;
+    /* Firefox shows scrollbar on growth, you can hide like this. */
+    overflow: hidden;
 }
-.grow-wrap > textarea,
+
+.grow-wrap>textarea,
 .grow-wrap::after {
-  /* Identical styling required!! */
-  border: 1px solid black;
-  padding: 0.5rem;
-  font: inherit;
-
-  /* Place on top of each other */
-  grid-area: 1 / 1 / 2 / 2;
+    /* Identical styling required!! */
+    border: 1px solid black;
+    padding: 0.5rem;
+    font: inherit;
+    /* Place on top of each other */
+    grid-area: 1 / 1 / 2 / 2;
 }
 
 body {
-  margin: 2rem;
-  font: 1rem/1.4 system-ui, sans-serif;
+    margin: 2rem;
+    font: 1rem/1.4 system-ui, sans-serif;
 }
 
 label {
-  display: block;
+    display: block;
 }
 
 .Attendees_Title {
@@ -342,75 +344,59 @@ label {
     .Reminder_Title {
         font-size: 14px;
     }
-
     .Reminder_Desc {
         font-size: 10px;
     }
- 
     .Workspace_Navtab div {
         font-size: 15px;
     }
-
     .Discussion_TextArea textarea {
         font-size: 14px;
     }
-
     .Avatar_Container .MuiAvatar-root {
         font-size: 14px !important;
         width: 33px;
         height: 33px;
     }
-
     .See_All div {
         margin-right: 12px;
         margin-top: 5px;
         font-size: 14px;
     }
-
-    .InputImgButton, .SendButton {
+    .InputImgButton,
+    .SendButton {
         font-size: 26px !important;
     }
-
     .Post_AuthorName {
         font-size: 16px !important;
     }
-
     .Post_AdminName {
         font-size: 13px !important;
     }
-
     .Post_UploadDate {
         font-size: 10px !important;
     }
-
     .Post_UploadTime {
         font-size: 9px !important;
     }
-
     .Post_Desc {
         font-size: 14px !important;
     }
-
     .Workspace_Body {
         width: 65% !important;
     }
-
     .Assignment_Date {
         font-size: 13px !important;
     }
-
     .Assignment_Time {
         font-size: 13px;
     }
-
     .Assignment_Name {
         font-size: 15px;
     }
-
     .Assignment_Img {
         height: 120px;
     }
-
     .Attendees_Title {
         font-size: 16px;
     }
@@ -420,37 +406,29 @@ label {
     .Reminders {
         display: none;
     }
-
     .Workspace_Body {
         width: 100% !important;
     }
-
     .ClassName {
         font-size: 20px;
     }
-
     .Workspace_Desc {
         font-size: 12px;
     }
-
     .Class_Code {
         font-size: 12px;
         padding: 3px 8px;
     }
-
     .Horizontal_Line {
         margin-right: 6px;
         height: 50px;
     }
-    
     .Member_Name {
         font-size: 16px;
     }
-
     .Workspace_Navtab div {
         padding: 3px 10px;
     }
-
     .Workspace_Navtab {
         width: 98% !important;
     }
@@ -460,7 +438,7 @@ label {
     background-color: #1B559C !important;
 }
 
-.floating-btn{
+.floating-btn {
     position: fixed !important;
     bottom: 80px !important;
     right: 15px !important;
@@ -479,7 +457,6 @@ label {
     .Posts {
         margin-bottom: 120px;
     }
-
     .Assignments {
         margin-bottom: 100px !important;
     }
