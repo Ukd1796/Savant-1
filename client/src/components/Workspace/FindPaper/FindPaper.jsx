@@ -2,6 +2,11 @@ import { useState } from 'react';
 import React from "react";
 import './FindPaper.css';
 import axios from 'axios';
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import Typography from "@material-ui/core/Typography";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
 
 
 const FindPaper = () => {
@@ -34,14 +39,39 @@ const handleChange = (prop) => (event) => {
 
   return (
     <div className="row m-0 justify-content-center">
-      <div className="Workspace_Info col-11 col-md-10 col-lg-9 col-xl-11 d-flex justify-content-between content-box mt-4 py-2 px-2 py-sm-3 px-sm-4">
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="keyword" className="form-control" onChange={handleChange("keyword")}  value={values.keyword}/>
-        <button type="submit" className="btn btn-success submitBtn " >Submit</button>
-        </form>
-        {result && <>new result</>}
-        {!result && <>no result</>}
+      <div className="Workspace_Info col-11 col-md-10 col-lg-9 col-xl-12 d-flex justify-content-between content-box mt-4 py-2 px-2 py-sm-3 px-sm-4">
+        <form action="/" method="post" class="d-flex" onSubmit={handleSubmit}>
+                        <div class="col-sm-10 pe-sm-0 mb-sm-0 mb-2">
+                          <div class="input-group">
+                            <input class="form-control" placeholder="What are we finding today?" type="text" name="keyword" onChange={handleChange("keyword")}  value={values.keyword} required/>
+                          </div>
+                        </div>
+                        <div class="col-sm-4 ps-sm-0">
+                          <button type="submit" class="btn bg-gradient-dark mb-0 ms-sm-3 me-auto h-100 w-100 d-block" value="Summarise">Search</button>
+                        </div>
+         </form>
       </div>
+      {/* ------------------------------------------ */}
+     <div className='col-11 col-md-10 col-lg-9 col-xl-12 d-flex justify-content-between content-box mt-4 py-2 px-2 py-sm-3 px-sm-4'> 
+     <Accordion className='col-12'>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+        >
+          <Typography
+            style={{
+              fontWeight: 10,
+            }}
+          >
+            Generate Summary
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>Greetings of the day :)</Typography>
+        </AccordionDetails>
+      </Accordion>
+     </div>
+     {/* ------------------------------------------ */}
     </div>
   )
 }
