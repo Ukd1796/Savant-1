@@ -6,8 +6,15 @@ import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import SelectInput from "@material-ui/core/Select/SelectInput";
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout'
+<<<<<<< HEAD
+import './UploadPaper.css'
+import FeatureAccordion from "./FeatureAccordion";
+
+
+=======
 import './UploadPaper.css';
 import FeatureAccordion from "./FeatureAccordion.js"
+>>>>>>> 6bb8df598a8782113d700c52e695355c03fc40d3
 
 const UploadPaper = () => {
 
@@ -57,6 +64,21 @@ const UploadPaper = () => {
             <button type="submit" className="btn btn-success submitBtn ">Submit</button>
           </form>
         </div>
+<<<<<<< HEAD
+    </div>
+    <div className="viewerPdf">
+    <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.6.347/build/pdf.worker.min.js">
+        { viewPdf && <>
+        <Viewer fileUrl={viewPdf} plugins={[defaultLayoutPluginInstance]} className="pdfViewAdd"/>
+        </>
+        }
+        {!viewPdf && <>No pdf</>}
+        </Worker>
+      </div>
+      <div className="accordion-container">
+             <FeatureAccordion />
+      </div>
+=======
 
           <div className="viewerPdf col-7 col-md-10 col-lg-9 col-xl-7 d-flex justify-content-between content-box mt-4 py-2 px-2 py-sm-3 px-sm-4">
             <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.6.347/build/pdf.worker.min.js">
@@ -71,6 +93,7 @@ const UploadPaper = () => {
         <div className=" accordion-container col-4 col-md-10 col-lg-9 col-xl-4 d-flex justify-content-between content-box mt-4 py-2 px-2 py-sm-3 px-sm-4">
           <FeatureAccordion />
         </div>
+>>>>>>> 6bb8df598a8782113d700c52e695355c03fc40d3
     </>
   )
 }
