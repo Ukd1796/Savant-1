@@ -1,6 +1,6 @@
 import './Home.css';
 import React, {useState} from 'react';
-import landingVector from "../../assets/svg-1.svg";
+import landingVector from "../../assets/LV.png";
 import Header from '../partials/Header/Header';
 import { Link} from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -18,7 +18,8 @@ const Home = () => {
           <div className="row">
             <div className="col-lg-6 pt-5 pt-lg-0 mb-5 order-2 order-lg-1 d-flex flex-column justify-content-center">
               <div>
-                <h3>Team Need GPU</h3>
+                <h3 class="shiro">Team Need GPU</h3>
+                <p></p>
                 <h1><strong>Savant: All in One<br/> Research Assistant</strong></h1>
                 <p></p>
                 <h3>We help students and researchers by making the research<br/> process easier, streamlined, efficient and organised.</h3>
@@ -31,7 +32,7 @@ const Home = () => {
               </div>
             </div>
             <div className="col-lg-6 order-1 order-lg-2 svg-1 aos-init aos-ani0 FloatImg" data-aos="fade-left">
-              <img src={landingVector} className="img-fluid animated" alt="" />
+              <img src={landingVector} className="img-fluid animated tho" alt="" />
             </div>
           </div>
         </div>

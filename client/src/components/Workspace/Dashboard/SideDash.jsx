@@ -21,6 +21,9 @@ const SideDash = (props) => {
      <div className="Sidedrawer_Class d-flex p-4 ps-2">
       <div className="row join-links pt-3">
       <div className="col-12 d-flex justify-content-center pb-3">
+          <p> <center>Don't Need a Workspace ?</center> <br/> <center> Choose one of the options below to directly find papers and utlise the features of Savant </center> </p>
+        </div>
+      <div className="col-12 d-flex justify-content-center pb-3">
           <button className="nor-btn">
             Find Papers
           </button>
@@ -28,16 +31,6 @@ const SideDash = (props) => {
         <div className="col-12 d-flex justify-content-center pb-3">
           <button className="nor-btn">
             Upload Papers
-          </button>
-        </div>
-        <div className="col-12 d-flex justify-content-center pb-3">
-          <button className="nor-btn">
-            Summarize
-          </button>
-        </div>
-        <div className="col-12 d-flex justify-content-center pb-3">
-          <button className="nor-btn">
-            Annotate
           </button>
         </div>
         <div className="col-12 d-flex justify-content-center pb-3">

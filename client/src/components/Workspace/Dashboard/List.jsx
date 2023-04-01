@@ -5,7 +5,6 @@ import Card1 from "../../../assets/card1.svg";
 import Card2 from "../../../assets/card2.svg";
 import Card3 from "../../../assets/card3.svg";
 import Card4 from "../../../assets/card4.svg";
-import Card5 from "../../../assets/card5.svg";
 import { Link } from 'react-router-dom';
 const List = (props) => {
   const [show, setShow] = useState(false);
@@ -26,32 +25,29 @@ const List = (props) => {
         (owned.concat(enrolled)).map((sub, index) => {
           let backgroundStyle = {};
           let card = Card1;
-          switch (index % 5) {
+          switch (index % 4) {
             case 0: {
-              backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
+              backgroundStyle = { backgroundColor: "#E9F3FF", borderRadius: "12px" };
               card = Card1;
             }
               break;
             case 1: {
-              backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
+              backgroundStyle = { backgroundColor: "#E9F3FF", borderRadius: "12px" };
               card = Card2;
             }
               break;
             case 2: {
-              backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
+              backgroundStyle = { backgroundColor: "#E9F3FF", borderRadius: "12px" };
               card = Card3;
             }
               break;
             case 3: {
-              backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
+              backgroundStyle = { backgroundColor: "#E9F3FF", borderRadius: "12px" };
               card = Card4;
             }
-              break;
-            case 4: {
-              backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
-              card = Card5;
-            }
+              
           }
+        
           // console.log(history);
           return (
             <div key={index} className="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
@@ -81,22 +77,22 @@ const List = (props) => {
           let card = Card1;
           switch (index % 4) {
             case 0: {
-              backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
+              backgroundStyle = { backgroundColor: "#E9F3FF", borderRadius: "12px" };
               card = Card1;
             }
               break;
             case 1: {
-              backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
+              backgroundStyle = { backgroundColor: "#E9F3FF", borderRadius: "12px" };
               card = Card2;
             }
               break;
             case 2: {
-              backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
+              backgroundStyle = { backgroundColor: "#E9F3FF", borderRadius: "12px" };
               card = Card3;
             }
               break;
             case 3: {
-              backgroundStyle = { backgroundColor: "#130636", borderRadius: "12px" };
+              backgroundStyle = { backgroundColor: "#E9F3FF", borderRadius: "12px" };
               card = Card4;
             }
             //   break;

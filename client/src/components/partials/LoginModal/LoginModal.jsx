@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Modal, ModalBody, TabContent, TabPane } from "reactstrap";
 import { withRouter, Redirect } from "react-router-dom";
 import "./LoginModal.css";
-import SingInImage from "../../../assets/signin.svg";
-import SingUpImage from "../../../assets/signup.svg";
+import SingInImage from "../../../assets/log.webp";
+import SingUpImage from "../../../assets/wo.png";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
@@ -223,14 +223,15 @@ const LoginModal = (props) => {
                   </div>
                   <div className="row">
                     <div className="col-12 d-flex justify-content-center align-items-center  forgot-password text-center pt-4">
-                      Don't have an account{" "}
+                      Don't have an account, {" "}
                       <a
                         className="or-signin pt-0 ps-1"
                         style={{ color: "#167BFF !important" }}
                         onClick={() => setActiveTab("2")}
-                      >
+                      ><strong>
                         {" "}
-                        sign up?
+                        Sign up?
+                        </strong>
                       </a>
                     </div>
                   </div>
@@ -448,7 +449,7 @@ const LoginModal = (props) => {
                 <div className="col-lg-6 d-none d-lg-block px-md-5">
                   <div className="row">
                     <div className="col-12 d-flex justify-content-center align-items-center pt-2">
-                      <img src={SingInImage} width="95%" />
+                      <img src={SingInImage} width="125%" />
                     </div>
                   </div>
                   <div className="row">
@@ -460,7 +461,7 @@ const LoginModal = (props) => {
                         onClick={() => setActiveTab("1")}
                       >
                         {" "}
-                        sign in?
+                      Sign in?
                       </a>
                     </div>
                   </div>
