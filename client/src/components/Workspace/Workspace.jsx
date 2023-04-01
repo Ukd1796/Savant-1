@@ -16,6 +16,7 @@ import { selectUserData } from '../../reduxSlices/authSlice';
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
 import FindPaper from "./FindPaper/FindPaper";
+import UploadPaper from "./UploadPaper/UploadPaper";
 const Workspace = () => {
   const storeData = useSelector(selectUserData);
   const history = useHistory();
@@ -122,7 +123,7 @@ const Workspace = () => {
           </div>
           <div className="row m-0 justify-content-center">
             <div className="Workspace_Info col-11 col-md-10 col-lg-9 col-xl-11 d-flex justify-content-between content-box mt-4 py-2 px-2 py-sm-3 px-sm-4">
-              <div className="d-flex">
+              <div className="d-flex newBar">
                 <div className="Horizontal_Line"></div>
                 <div className="d-flex flex-column">
                   <div>
@@ -201,6 +202,9 @@ const Workspace = () => {
                   }
                 {activeTab === "find" ? (
                       <FindPaper />) :
+                      activeTab === "collaborators" ? <Collaborators classCode={classCode} adminName={adminName} adminEmail={adminEmail} /> : null}
+                      {activeTab === "upload" ? (
+                      <UploadPaper />) :
                       activeTab === "collaborators" ? <Collaborators classCode={classCode} adminName={adminName} adminEmail={adminEmail} /> : null}
               </div>
             </div>

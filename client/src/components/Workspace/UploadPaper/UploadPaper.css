@@ -1,20 +1,22 @@
-@media screen and (max-width:768px) {
-    .modal-body {
-      padding: 30px 30px !important;
-    }
-    .modal {
-      display: flex !important;
-      justify-content: center !important;
-      align-items: center !important;
-    }
-    .modal-dialog {
-      width: 100% !important;
-    }
-  }
-  
-  .assignment_modal .modal-content{
-    font-family: 'Tajawal';
-    max-width: 455px !important;
-    border-radius: 0px !important;
-    margin: auto !important;
-  }
+.submitBtn{
+   position:relative;
+   bottom:3.5rem;
+   left:25rem;
+}
+
+.Upload_Info{
+  position: relative;
+  right:25rem;
+}
+
+.viewerPdf{
+
+  position:relative;
+  left:34rem;
+  bottom:7rem;
+  width:9in;
+  height:9in;
+}
+.pdfViewAdd{
+  overflow-y: scroll;
+}
