@@ -7,6 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import SelectInput from "@material-ui/core/Select/SelectInput";
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout'
 import './UploadPaper.css'
+import FeatureAccordion from "./FeatureAccordion";
+
 
 
 const UploadPaper = () => {
@@ -67,7 +69,10 @@ const UploadPaper = () => {
         }
         {!viewPdf && <>No pdf</>}
         </Worker>
-        </div>
+      </div>
+      <div className="accordion-container">
+             <FeatureAccordion />
+      </div>
     </>
   )
 }

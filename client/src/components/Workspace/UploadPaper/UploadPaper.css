@@ -12,11 +12,16 @@
 .viewerPdf{
 
   position:relative;
-  left:34rem;
+  left:50%;
   bottom:7rem;
   width:9in;
   height:9in;
 }
 .pdfViewAdd{
   overflow-y: scroll;
+}
+
+.accordion-container{
+  position: relative;
+    bottom: 240px;
 }
