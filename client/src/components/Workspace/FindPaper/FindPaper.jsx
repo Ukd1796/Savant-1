@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 import React from "react";
 import './FindPaper.css';
 import axios from 'axios';
@@ -15,21 +15,22 @@ const FindPaper = () => {
     keyword: "",
 });
 
+
 const [loading, setLoading] = useState(false);
-const [result,viewResult] = useState(false)
+const [result,viewResult] = useState(
+[])
 const handleChange = (prop) => (event) => {
   setValues({ ...values, [prop]: event.target.value });
 };
   const handleSubmit = (event) =>{
       event.preventDefault();
-      viewResult(true);
       console.log(values.keyword);
       axios.get(`http://export.arxiv.org/api/query?search_query=all:${values.keyword}&start=0&max_results=5`)
     .then(function (response) {
         // console.log(response.data); // this will print xml data structure
         let parser = new xml2js.Parser();
         parser.parseString(response.data,function(err, result) {
-          console.log(result.feed.entry[0]);
+          viewResult(result.feed.entry)
        })
     })
     .catch(function (error) {
@@ -37,11 +38,14 @@ const handleChange = (prop) => (event) => {
     })
     .then(function () {
 
-      
+      console.log("json creation")
         
     });  
-    setLoading(true);
   }
+
+  useEffect(async () => {
+    FindPaper();
+}, []);
 
   return (
     <div className="row m-0 justify-content-center">
