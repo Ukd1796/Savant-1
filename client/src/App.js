@@ -36,6 +36,7 @@ const App = () => {
                 <Route path='/workspace/:id' component={Workspace} exact/>
                 <Route path='/workspace/:id/:tab' component={Workspace} exact/>
                 <Route path='/workspace/:id/drafts/:draftId' component={WritePaper} exact/>
+                <Route path='/workspace/:id/drafts/:draftId/:tab' component={WritePaper} exact/>
                 <Redirect to ="/" />
               </Switch> 
             ) : (

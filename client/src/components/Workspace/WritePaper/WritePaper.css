@@ -1,0 +1,28 @@
+.WritePaper {
+    margin-top: 20px;
+    background-color: #130636 !important;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.WritePaper_Info {
+    padding: 2rem !important;
+    box-shadow: 0px 1px 6px #d8ddfd;
+    position: relative;
+    left: 3rem;
+}
+
+.WritePaper_Nav {
+    padding: 0 !important;
+    box-shadow: 0px 1px 6px #d8ddfd;
+}
+
+.WritePaper_Navtab {
+    width: 100% !important;
+}
+
+
+.Workspace_Body {
+    width: 63% !important;
+}
