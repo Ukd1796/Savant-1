@@ -5,8 +5,45 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Button from '@mui/material/Button';
+import { Configuration, OpenAIApi } from "openai";
 
 export default function FeatureAccordian() {
+
+  const [text, setText] = useState("");
+      const [summarizedtext, setsummarizedtext] = useState("");
+      const [loading, setLoading] = useState(false);
+
+      const configuration = new Configuration({
+        // apiKey: process.env.OPENAI_API_KEY,
+        apiKey:"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",
+      });
+      const openai = new OpenAIApi(configuration);
+
+      const HandleSubmit = (e) => {
+        setLoading(true);
+        e.preventDefault();
+        openai
+          .createCompletion({
+            model: "text-davinci-003",
+            prompt: generatePrompt(text),
+            temperature: 0.6,
+            max_tokens: 100,
+          })
+          .then((res) => {
+            if (res.status === 200) {
+              setLoading(false);
+              setsummarizedtext(res?.data?.choices[0]?.text);
+            }
+          })
+          .catch((err) => {
+            console.log(err, "An error occured");
+          });
+      };
+
+      function generatePrompt(text) {
+        return `Summarize this ${text}. and break them into seperate lines`;
+      }
+
   return (
     <div style={{}}>
       <Accordion>
@@ -24,10 +61,10 @@ export default function FeatureAccordian() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography> 
-            <textarea name="textarea" rows="5" cols="50" minlength="50" maxlength="70">
-                  Enter your Text
-                  </textarea>
+             <form onSubmit={HandleSubmit}>
+            <Input type="textarea" name="textarea" rows="5" cols="50" minlength="50" maxlength="70"/>
                   <button type="submit" className="btn btn-success ">Submit</button>
+                  </form>
                   <hr />
                   <textarea name="textarea" rows="5" cols="50" minlength="50" maxlength="70">
                   Summarized text
