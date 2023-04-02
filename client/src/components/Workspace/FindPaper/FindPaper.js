@@ -90,8 +90,8 @@ const FindPaper = () => {
                     {result.summary[0]}
                   </Typography>
                 </AccordionDetails>
-                <Button classname="btnn-1" variant="contained"><a href={result.link[0].$.href}>View PDF</a></Button>
-                <Button classname="btnn-2" variant="contained"><a href="/annotate">Annotate</a></Button>
+                <Button sx={{backgroundColor:"#fff"}} classname="btnn-1" variant="contained"><a href={result.link[0].$.href}>View PDF</a></Button>
+                <Button sx={{backgroundColor:"#fff"}} classname="btnn-2" variant="contained"><a href="/annotate">Annotate</a></Button>
                 <BookmarkBorderIcon />
 
               </Accordion>

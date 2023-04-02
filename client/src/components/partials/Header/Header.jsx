@@ -89,7 +89,7 @@ const Header = () => {
                 {
                   (token) ? (
                     <li className="nav-item mx-3">
-                      <NavLink to="/workspace" style={{ color: 'black' }} activeClassName="selected" exact>Dashboard</NavLink>
+                      <NavLink to="/workspace" className="nav-link" activeClassName="selected" exact>Dashboard</NavLink>
                     </li>
                   ) : ""
                 }
