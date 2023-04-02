@@ -31,9 +31,11 @@ const handleChange = (prop) => (event) => {
         // console.log(response.data); // this will print xml data structure
         let parser = new xml2js.Parser();
         parser.parseString(response.data,function(err, result) {
-          viewResult(result.feed.entry)
+          console.log(result.feed.entry)
           console.log(result.feed.entry[0].title)
+          viewResult(result.feed.entry)
        })
+      
     })
     .catch(function (error) {
         console.log(error);
@@ -68,6 +70,7 @@ const handleChange = (prop) => (event) => {
 
         return(  
                <div className='col-11 col-md-10 col-lg-9 col-xl-12 d-flex justify-content-between content-box mt-4 py-2 px-2 py-sm-3 px-sm-4'> 
+               <a href={result.link[0]}/>
 <Accordion className='col-12' key={index}>
    <AccordionSummary
      expandIcon={<ExpandMoreIcon />}
@@ -78,10 +81,13 @@ const handleChange = (prop) => (event) => {
          fontWeight: 10,
        }}
      >
+     {result.title[0]}
      </Typography>
    </AccordionSummary>
    <AccordionDetails>
-     <Typography>Greetings of the day :)</Typography>
+     <Typography>
+      {result.summary[0]}
+     </Typography>
    </AccordionDetails>
  </Accordion>
 </div>
