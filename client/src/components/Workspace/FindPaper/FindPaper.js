@@ -8,7 +8,9 @@ import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import { syncIndexes } from 'mongoose';
+import Button from '@mui/material/Button';
 
 
 const FindPaper = () => {
@@ -70,7 +72,6 @@ const handleChange = (prop) => (event) => {
 
         return(  
                <div className='col-11 col-md-10 col-lg-9 col-xl-12 d-flex justify-content-between content-box mt-4 py-2 px-2 py-sm-3 px-sm-4'> 
-               <a href={result.link[0]}/>
 <Accordion className='col-12' key={index}>
    <AccordionSummary
      expandIcon={<ExpandMoreIcon />}
@@ -78,7 +79,7 @@ const handleChange = (prop) => (event) => {
    >
      <Typography
        style={{
-         fontWeight: 10,
+         fontWeight:'bold', fontSize:20
        }}
      >
      {result.title[0]}
@@ -89,6 +90,9 @@ const handleChange = (prop) => (event) => {
       {result.summary[0]}
      </Typography>
    </AccordionDetails>
+   <Button classname="btnn" variant="contained"><a href={result.link[0].$.href}>View PDF</a></Button>
+   <BookmarkBorderIcon/>
+   
  </Accordion>
 </div>
         )
