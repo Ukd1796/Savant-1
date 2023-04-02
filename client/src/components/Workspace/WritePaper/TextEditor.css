@@ -27,7 +27,7 @@ body {
 .container .ql-toolbar.ql-snow {
   width: 6.5in;
   /* right: 3rem; */
-  /* position: relative; */
+  position: relative;
   right:-0.5rem;
   top: 0;
   z-index: 1;
@@ -47,12 +47,12 @@ body {
   }
 
   .container .ql-editor {
-    width: 7in;
+    width: 8in;
     height: 9in;
     padding: 0;
     margin: 0;
     box-shadow: none;
-    align-self: flex-start;
+    /* align-self: flex-start; */
   }
 
   .container .ql-toolbar.ql-snow {

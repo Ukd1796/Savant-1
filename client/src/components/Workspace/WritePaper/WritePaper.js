@@ -4,6 +4,10 @@ import TextEditor from "./TextEditor";
 import "./WritePaper.css";
 import MobileHeader from "../../partials/Header/MobileHeader";
 import Header from "../../partials/Header/Header";
+import { Upload } from "@mui/icons-material";
+import { Worker } from '@react-pdf-viewer/core';
+import { Viewer } from '@react-pdf-viewer/core';
+import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout'
 
 const WritePaper = () => {
   const history = useHistory();
@@ -31,6 +35,42 @@ const WritePaper = () => {
     }
   }, [activeTab])
 
+  const defaultLayoutPluginInstance = defaultLayoutPlugin();
+
+  const [pdfFile, setPdfFile] = useState(null);
+  const [viewPdf, setViewPdf] = useState(null);
+
+
+  const fileType = ['application/pdf'];
+  const handleChange = (e) => {
+    let selectedFile = e.target.files[0];
+    // console.log(selectedFile.type);
+    if (selectedFile) {
+      if (selectedFile && fileType.includes(selectedFile.type)) {
+        let reader = new FileReader();
+        reader.readAsDataURL(selectedFile);
+        reader.onload = (e) => {
+          setPdfFile(e.target.result);
+        }
+      }
+      else {
+        setPdfFile(e.target.result)
+      }
+    }
+    else {
+      setPdfFile(null);
+    }
+  }
+
+  const handleSubmitUpload = (e) => {
+    e.preventDefault()
+    if (pdfFile != null) {
+      setViewPdf(pdfFile)
+    }
+    else {
+      setViewPdf(null)
+    }
+  }
 
   return (
     <div className="WritePaper">
@@ -40,49 +80,114 @@ const WritePaper = () => {
       <div className="d-block d-md-none">
         <MobileHeader />
       </div>
-
-      <div className="WritePaper_Body col-12 col-md-10 col-lg-9 col-xl-12 d-flex flex-row mt-4 px-2 px-sm-4">
-        <div className="WritePaper_Nav col-5 col-md-3 col-lg-3 col-xl-5 p-2 content-box mt-4 py-2 px-4 py-sm-3 px-sm-4">
-          <div className="col-12 col-md-10 col-lg-9 col-xl-12">
+      <div className="row d-flex flex-row">
+        <div className="WritePaper_Body col-12 col-md-10 col-lg-9 col-xl-12 d-flex mt-4 px-2 px-sm-4">
+          <div className="WritePaper_Nav col-5 col-md-3 col-lg-5 col-xl-5 p-2 content-box mt-4 py-2 px-4 py-sm-3 px-sm-4">
+            <div className="col-12 col-md-10 col-lg-9 col-xl-12">
               <div className="d-flex justify-content-between WritePaper_Navtab mt-4">
                 <div
                   onClick={() => setActiveTab("upload")}
                   className={activeTab === "upload" ? "active" : ""}
                 >
-                  Upload
+                  <b>Upload</b>
                 </div>
                 <div
                   onClick={() => setActiveTab("plagiarism")}
                   className={activeTab === "plagiarism" ? "active" : ""}
                 >
-                  Plagiarism
+                  <b>Plagiarism</b>
                 </div>
                 <div
                   onClick={() => setActiveTab("paraphrase")}
                   className={activeTab === "paraphrase" ? "active" : ""}
                 >
-                  Paraphrase
+                  <b>Paraphrase</b>
                 </div>
                 <div
                   onClick={() => setActiveTab("ask")}
                   className={activeTab === "ask" ? "active" : ""}
                 >
-                  Ask ChatGPT
+                  <b>Ask ChatGPT</b>
                 </div>
 
+              </div>
             </div>
           </div>
+          {
+
+            activeTab === "upload" ? (
+              <>
+                <div className="WritePaper_Navbody d-flex justify-content-center leftbar">
+                  <form onSubmit={handleSubmitUpload}>
+                    <input type="file" className="form-control" onChange={handleChange} />
+                    <button type="submit" className="btn btn-success submitBtn ">Submit</button>
+                  </form>
+                  <div className="Pdf col-12 col-md-10 col-lg-9 col-xl-12 d-flex justify-content-between content-box mt-4 py-2 px-2 py-sm-3 px-sm-4">
+                    <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.6.347/build/pdf.worker.min.js">
+                      {viewPdf && <>
+                        <Viewer fileUrl={viewPdf} plugins={[defaultLayoutPluginInstance]} className="pdfViewAdd" />
+                      </>
+                      }
+                      {!viewPdf && <>No pdf</>}
+                    </Worker>
+                  </div>
+                </div>
+              </>) : null}
+          {
+
+            activeTab === "plagiarism" ? (
+              <>
+              <div className="WritePaper_Navbody d-flex justify-content-center leftbar">
+                <textarea name="textarea" rows="5" cols="50" minlength="50" maxlength="70">
+                  Plagiarism your text.
+                  </textarea>
+                  <button type="submit" className="btn btn-success ">Submit</button>
+                  <hr />
+                  <textarea name="textarea" rows="5" cols="50" minlength="50" maxlength="70">
+                  </textarea>
+                </div>
+               
+              </>) : null}
+
+          {
+
+            activeTab === "paraphrase" ? (
+              <>
+                <div className="WritePaper_Navbody d-flex justify-content-center leftbar">
+                <textarea name="textarea" rows="5" cols="50" minlength="50" maxlength="70">
+                  Paraphrase your text.
+                  </textarea>
+                  <button type="submit" className="btn btn-success ">Submit</button>
+                  <hr />
+                  <textarea name="textarea" rows="5" cols="50" minlength="50" maxlength="70">
+                  Your Paraphrased text.
+                  </textarea>
+                </div>
+              </>) : null}
+
+          {
+
+            activeTab === "ask" ? (
+              <>
+                <div className="WritePaper_Navbody d-flex justify-content-center leftbar">
+                  <form onSubmit={handleSubmitUpload}>
+                  <input class="form-control" placeholder="What are we finding today?" type="text" name="keyword" required/>
+                    <button type="submit" className="btn btn-success submitBtn ">Submit</button>
+                  </form>
+                  <hr />
+                    <textarea name="textarea" rows="5" cols="50" minlength="50" maxlength="70">
+                  </textarea>
+                </div>
+              </>) : null}
+
         </div>
-        <div className="WritePaper_info col-7 col-md-5 col-lg-4 col-xl-7 p-2 justify-content-between content-box mt-4 py-2 px-2 py-sm-3 px-sm-4">
+        <div className="WritePaper_info col-7 col-md-5 col-lg-7 col-xl-7 p-2 justify-content-between content-box mt-4 py-2 px-2 py-sm-3 px-sm-4">
           <div className="Editor col-12 col-md-10 col-lg-9 col-xl-12">
             <TextEditor />
           </div>
         </div>
-
-
       </div>
     </div>
-
   )
 }
 
