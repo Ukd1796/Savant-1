@@ -5,6 +5,7 @@
     "@grammarly/editor-sdk-react": "^2.3.14",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.10.15",
+    "@pdftron/webviewer": "^10.0.0",
     "bcrypt": "^5.0.1",
     "bootstrap": "^5.2.3",
     "cors": "^2.8.5",

@@ -9,8 +9,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AUTOLOGIN, selectUserData } from './reduxSlices/authSlice';
 import Reminders from './components/partials/Header/MobileReminder'
 import CircularProgress from '@material-ui/core/CircularProgress';
-import TextEditor from "./components/Workspace/WritePaper/TextEditor.js"
 import WritePaper from './components/Workspace/WritePaper/WritePaper';
+import Annotate from './components/Workspace/Dashboard/Annotate';
+
 const App = () => {
   const userData = useSelector(selectUserData);
 
@@ -37,6 +38,7 @@ const App = () => {
                 <Route path='/workspace/:id/:tab' component={Workspace} exact/>
                 <Route path='/workspace/:id/drafts/:draftId' component={WritePaper} exact/>
                 <Route path='/workspace/:id/drafts/:draftId/:tab' component={WritePaper} exact/>
+                <Route path='/annotate' component={Annotate} exact/>
                 <Redirect to ="/" />
               </Switch> 
             ) : (
