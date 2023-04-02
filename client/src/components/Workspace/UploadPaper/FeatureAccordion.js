@@ -22,7 +22,16 @@ export default function FeatureAccordian() {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>Greetings of the day :)</Typography>
+          <Typography> 
+            <textarea name="textarea" rows="5" cols="50" minlength="50" maxlength="70">
+                  Enter your Text
+                  </textarea>
+                  <button type="submit" className="btn btn-success ">Submit</button>
+                  <hr />
+                  <textarea name="textarea" rows="5" cols="50" minlength="50" maxlength="70">
+                  Summarized text
+                  </textarea>
+                  </Typography>
         </AccordionDetails>
       </Accordion>
       <Accordion style={{ width: 490 }}>
