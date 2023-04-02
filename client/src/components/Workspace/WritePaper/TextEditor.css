@@ -25,16 +25,19 @@ body {
 }
 
 .container .ql-toolbar.ql-snow {
-  width: 6.5in;
+  width: 100%;
   /* right: 3rem; */
   position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   right:-0.5rem;
   top: 0;
   z-index: 1;
   display: flex;
   background-color: #F3F3F3;
   border: none;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
 }
 
 @page {

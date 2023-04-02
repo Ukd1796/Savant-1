@@ -4,6 +4,7 @@ import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
+import Button from '@mui/material/Button';
 
 export default function FeatureAccordian() {
   return (
@@ -45,10 +46,11 @@ export default function FeatureAccordian() {
             }}
           >
             Annotate Paper
+            
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>Greetings of the day :)</Typography>
+          <Typography> <Button classname="btnn-2" variant="contained"><a href="/annotate">Annotate</a></Button></Typography>
         </AccordionDetails>
       </Accordion>
       <Accordion style={{ width: 490 }}>
@@ -67,18 +69,18 @@ export default function FeatureAccordian() {
         <AccordionDetails>
           <Typography>
             <label>
-              Text input: <input name="myInput" />
+            Enter your URL: <input name="myInput" />
              
             </label>
             
             <button type="submit" className="btn btn-success submitBtns ">Submit</button>
             <hr />
             <label>
-        Pick a fruit:
+        Pick a Citation Format:
         <select name="selectedFruit">
-          <option value="apple">Apple</option>
-          <option value="banana">Banana</option>
-          <option value="orange">Orange</option>
+          <option value="APA">APA</option>
+          <option value="Harvard">Harvard</option>
+          <option value="Chicago">Chicago</option>
         </select>
       </label>
       <hr />

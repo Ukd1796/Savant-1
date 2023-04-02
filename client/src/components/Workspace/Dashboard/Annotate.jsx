@@ -9,7 +9,7 @@ const Annotate = () => {
     WebViewer(
       {
         path: '/webviewer/lib',
-        initialDoc: '/files/Asynchronous Federated Optimization.pdf',
+        initialDoc: '../files/Asynchronous Federated Optimization.pdf',
       },
       viewer.current,
     ).then((instance) => {
