@@ -8,6 +8,7 @@ import { Upload } from "@mui/icons-material";
 import { Worker } from '@react-pdf-viewer/core';
 import { Viewer } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout'
+import axios from 'axios';
 
 const WritePaper = () => {
   const history = useHistory();
@@ -36,6 +37,39 @@ const WritePaper = () => {
   }, [activeTab])
 
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
+
+  const paraphrasingToolRapidAPIKey="e8ad57b8c4msh5d19f730f3f5ec8p1f2cfdjsnddf79a72ff91"
+
+  const [values, setValues] = useState({
+    paraphrase: "",
+});
+
+const [answer,setAnswer] =useState('')
+   
+  const handleNewChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
+  const handleSubmit=async(event)=> {
+     event.preventDefault();
+     console.log(values.paraphrase);
+
+    const response = await axios({
+        method: 'post',
+        url: 'https://paraphrasing-tool1.p.rapidapi.com/api/rewrite',
+        headers: {
+            "x-rapidapi-host": "paraphrasing-tool1.p.rapidapi.com",
+            "x-rapidapi-key": paraphrasingToolRapidAPIKey,
+            "content-type": "application/json",
+            "accept": "application/json",
+            "useQueryString": true
+        },
+        data: { "sourceText": values.paraphrase }
+    })
+
+    console.log(response.data.newText)
+    setAnswer(response.data.newText)
+}
 
   const [pdfFile, setPdfFile] = useState(null);
   const [viewPdf, setViewPdf] = useState(null);
@@ -138,7 +172,7 @@ const WritePaper = () => {
             activeTab === "plagiarism" ? (
               <>
               <div className="WritePaper_Navbody d-flex justify-content-center leftbar">
-                <textarea name="textarea" rows="5" cols="50" minlength="50" maxlength="70">
+                <textarea name="textarea" rows="5" cols="50"  maxlength="70">
                   Plagiarism your text.
                   </textarea>
                   <button type="submit" className="btn btn-success ">Submit</button>
@@ -154,14 +188,15 @@ const WritePaper = () => {
             activeTab === "paraphrase" ? (
               <>
                 <div className="WritePaper_Navbody d-flex justify-content-center leftbar">
-                <textarea name="textarea" rows="5" cols="50" minlength="50" maxlength="70">
-                  Paraphrase your text.
-                  </textarea>
+                  <form onSubmit={handleSubmit}>
+                <input type="texrarea" name="paraphrase" rows="5" cols="50" minlength="50" maxlength="70" onChange={handleNewChange("paraphrase")}  value={values.paraphrase}/>
+    
                   <button type="submit" className="btn btn-success ">Submit</button>
                   <hr />
                   <textarea name="textarea" rows="5" cols="50" minlength="50" maxlength="70">
                   Your Paraphrased text.
                   </textarea>
+                  </form>
                 </div>
               </>) : null}
 
