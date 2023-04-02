@@ -5,6 +5,7 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Button from '@mui/material/Button';
+import './FeatureAccordion.css';
 
 export default function FeatureAccordian() {
   return (
@@ -50,7 +51,7 @@ export default function FeatureAccordian() {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography> <Button classname="btnn-2" variant="contained"><a href="/annotate">Annotate</a></Button></Typography>
+          <Typography> <Button sx={{backgroundColor:"#fff"}} classname="btnn-2" variant="contained"><a href="/annotate">Annotate</a></Button></Typography>
         </AccordionDetails>
       </Accordion>
       <Accordion style={{ width: 490 }}>
