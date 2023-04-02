@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
@@ -63,13 +63,12 @@ export default function FeatureAccordian() {
         <AccordionDetails>
           <Typography> 
              <form onSubmit={HandleSubmit}>
-            <Input type="textarea" name="textarea" rows="5" cols="50" minlength="50" maxlength="70"/>
+            <textarea type="textarea" name="textarea" rows="5" cols="50" minlength="50" maxlength="500" onChange={(e) => setText(e.target.value)} value={text}/>
                   <button type="submit" className="btn btn-success ">Submit</button>
                   </form>
                   <hr />
-                  <textarea name="textarea" rows="5" cols="50" minlength="50" maxlength="70">
-                  Summarized text
-                  </textarea>
+                  <textarea name="textarea" rows="5" cols="50" minlength="50" maxlength="70" value={summarizedtext}
+                onChange={(e) => setText(e.target.value)}/>
                   </Typography>
         </AccordionDetails>
       </Accordion>

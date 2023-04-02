@@ -189,7 +189,7 @@ const [answer,setAnswer] =useState('')
               <>
                 <div className="WritePaper_Navbody d-flex justify-content-center leftbar">
                   <form onSubmit={handleSubmit}>
-                <input type="texrarea" name="paraphrase" rows="5" cols="50" minlength="50" maxlength="70" onChange={handleNewChange("paraphrase")}  value={values.paraphrase}/>
+                <textarea type="texrarea" name="paraphrase" rows="5" cols="50" minlength="50" maxlength="70" onChange={handleNewChange("paraphrase")}  value={values.paraphrase}/>
     
                   <button type="submit" className="btn btn-success ">Submit</button>
                   <hr />
