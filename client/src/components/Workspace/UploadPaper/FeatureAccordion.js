@@ -69,18 +69,18 @@ export default function FeatureAccordian() {
         <AccordionDetails>
           <Typography>
             <label>
-              Text input: <input name="myInput" />
+            Enter your URL: <input name="myInput" />
              
             </label>
             
             <button type="submit" className="btn btn-success submitBtns ">Submit</button>
             <hr />
             <label>
-        Pick a fruit:
+        Pick a Citation Format:
         <select name="selectedFruit">
-          <option value="apple">Apple</option>
-          <option value="banana">Banana</option>
-          <option value="orange">Orange</option>
+          <option value="APA">APA</option>
+          <option value="Harvard">Harvard</option>
+          <option value="Chicago">Chicago</option>
         </select>
       </label>
       <hr />
